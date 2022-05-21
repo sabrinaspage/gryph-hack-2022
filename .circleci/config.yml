@@ -6,9 +6,6 @@ jobs:
       - image: cimg/node:16.13.2
     steps:
       - checkout
-      - run:
-          name: Update yarn
-          command: brew install yarn
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
