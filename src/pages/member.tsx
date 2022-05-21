@@ -1,7 +1,8 @@
 import Box from "@mui/material/Box";
+import MainTemplate from "../template/main-template";
 
-const Homepage = () => {
-  return <Box> homepage </Box>;
+const Member = () => {
+  return <MainTemplate>hello</MainTemplate>;
 };
 
-export default Homepage;
+export default Member;

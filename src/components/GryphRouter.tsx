@@ -3,6 +3,7 @@ import ClassVideos from "../pages/class-videos";
 import Homepage from "../pages/homepage";
 import Livestream from "../pages/livestream";
 import Login from "../pages/login";
+import Member from "../pages/member";
 import Registration from "../pages/registration";
 import Statistics from "../pages/statistics";
 
@@ -16,6 +17,7 @@ export default function GryphRouter() {
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/statistics" element={<Statistics />} />
+        <Route path="/member" element={<Member />} />
       </Routes>
     </Router>
   );
