@@ -30,11 +30,11 @@ export default function Registration() {
         email: data.get("email"),
         password: data.get("password"),
       })
-      .then((res) => {
+      .then(() => {
         setEmailError(false);
         navigate("/login");
       })
-      .catch((error) => {
+      .catch(() => {
         setEmailError(true);
       });
   };
