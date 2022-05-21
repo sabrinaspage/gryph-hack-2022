@@ -8,7 +8,7 @@ jobs:
       - checkout
       - node/install-packages:
         cache-path: ~/node_modules
-        override-ci-command: npm install
+        override-ci-command: yarn add
       - run:
           name: Lint files
           command: yarn eslint "**/*.{ts,tsx}" --fix
