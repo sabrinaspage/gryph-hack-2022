@@ -19,7 +19,7 @@ export default function NavBar() {
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          News
+          Trainscript
         </Typography>
         <Button color="inherit">Login</Button>
       </Toolbar>

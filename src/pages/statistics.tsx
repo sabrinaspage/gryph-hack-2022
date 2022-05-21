@@ -1,7 +1,7 @@
-import Box from "@mui/material/Box";
+import MainTemplate from "../template/main-template";
 
 const Statistics = () => {
-  return <Box> Statistics </Box>;
+  return <MainTemplate>hello</MainTemplate>;
 };
 
 export default Statistics;
