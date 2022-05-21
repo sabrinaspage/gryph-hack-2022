@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -10,17 +10,33 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const theme = createTheme();
 
 export default function Registration() {
+  const navigate = useNavigate();
+  const [emailError, setEmailError] = useState(false);
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+
+    axios
+      .post("https://gryph-hack-2022.herokuapp.com/users", {
+        name: data.get("name"),
+        type: 0,
+        email: data.get("email"),
+        password: data.get("password"),
+      })
+      .then(() => {
+        setEmailError(false);
+        navigate("/login");
+      })
+      .catch(() => {
+        setEmailError(true);
+      });
   };
 
   return (
@@ -67,11 +83,22 @@ export default function Registration() {
                 margin="normal"
                 required
                 fullWidth
+                id="name"
+                label="Username"
+                name="name"
+                autoFocus
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
                 id="email"
                 label="Email Address"
                 name="email"
                 autoComplete="email"
                 autoFocus
+                error={emailError}
+                helperText={emailError && "Email already exists"}
               />
               <TextField
                 margin="normal"
