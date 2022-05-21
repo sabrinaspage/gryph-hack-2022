@@ -87,28 +87,16 @@ export default function Registration() {
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
               />
-              <Grid container my={2} mb={2} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                <Grid item xs={12} sm={8} md={6}>
-                  <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    sx={{ py: 2 }}
-                  >
-                    Sign Up As Admin
-                  </Button>
-                </Grid>
-                <Grid item xs={12} sm={8} md={6}>
-                  <Button
-                    type="submit"
-                    fullWidth
-                    variant="contained"
-                    sx={{ py: 2 }}
-                  >
-                    Sign Up As Member
-                  </Button>
-                </Grid>
-              </Grid>
+              <Box sx={{ mt: 3, mb: 2 }}>
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ py: 2 }}
+                >
+                  Sign Up
+                </Button>
+              </Box>
               <Grid container>
                 <Grid item xs>
                   <Link href="#" variant="body2">
