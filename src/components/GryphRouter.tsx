@@ -11,7 +11,7 @@ export default function GryphRouter() {
     <Router>
       <Routes>
         <Route path="/class-videos" element={<ClassVideos />} />
-        <Route path="/homepage" element={<Homepage />} />
+        <Route path="/" element={<Homepage />} />
         <Route path="/livestream" element={<Livestream />} />
         <Route path="/login" element={<Login />} />
         <Route path="/registration" element={<Registration />} />
