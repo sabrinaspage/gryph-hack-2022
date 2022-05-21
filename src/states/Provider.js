@@ -2,9 +2,10 @@ import { createContext, useReducer } from "react";
 import reducer from "./reducer";
 import PropTypes from "prop-types";
 
+const defaultState = { userData: {}, isLoggedIn: false };
 // look here
 const initialState = JSON.parse(
-  localStorage.getItem("state") || "{ userData: {}, isLoggedIn: false }"
+  localStorage.getItem("state") || JSON.stringify(defaultState)
 );
 
 export const Context = createContext();
