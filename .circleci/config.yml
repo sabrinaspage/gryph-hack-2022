@@ -6,9 +6,6 @@ jobs:
       - image: cimg/node:16.13.2
     steps:
       - checkout
-      - run:
-          name: Update yarn
-          command: brew install yarn
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
@@ -29,7 +26,7 @@ jobs:
           name: Deploy to Netlify
           command: ./node_modules/.bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=build
 workflows:
-  version: 2
+  # version: 2
   build-deploy:
     jobs:
       - build:
