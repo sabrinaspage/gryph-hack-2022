@@ -7,7 +7,9 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Box from "@mui/system/Box";
 import Typography from "@mui/material/Typography";
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
+import SessionDialog from "../components/SessionDialog";
+import CardActionArea from "@mui/material/CardActionArea";
 
 interface FillerSectionProps {
   children: ReactNode;
@@ -42,6 +44,9 @@ const RecordingSection = ({
   handleStartRecording,
   handleManualRecording,
 }: RecordingSectionProps) => {
+  const [session, setSession] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
+
   return (
     <Grid item xs={12} md={4}>
       <Grid
@@ -58,6 +63,12 @@ const RecordingSection = ({
           },
         }}
       >
+        <SessionDialog
+          videoId={123}
+          isOpen={dialogOpen}
+          handleOpen={setDialogOpen}
+          handleNameChange={() => null}
+        />
         <Grid item xs={6} md={12}>
           <Button
             onClick={() => handleStartRecording}
@@ -68,13 +79,29 @@ const RecordingSection = ({
           </Button>
         </Grid>
         <Grid item xs={6} md={12}>
-          <Button
-            onClick={() => handleManualRecording}
-            variant="outlined"
-            startIcon={<RadioButtonCheckedIcon style={{ color: "red" }} />}
-          >
-            manual recording
-          </Button>
+          {!session ? (
+            <Button
+              onClick={() => {
+                handleManualRecording;
+                setSession(true);
+              }}
+              variant="outlined"
+              startIcon={<RadioButtonCheckedIcon style={{ color: "red" }} />}
+            >
+              manual recording
+            </Button>
+          ) : (
+            <Button
+              onClick={() => {
+                setDialogOpen(true);
+                setSession(false);
+              }}
+              variant="outlined"
+              startIcon={<RadioButtonCheckedIcon style={{ color: "red" }} />}
+            >
+              stop session
+            </Button>
+          )}
         </Grid>
       </Grid>
     </Grid>
@@ -87,7 +114,13 @@ interface ThumbnailCardProps {
 
 const ThumbnailCard = ({ children }: ThumbnailCardProps) => {
   return (
-    <Card sx={{ height: 100, backgroundColor: "#ededed" }}>{children}</Card>
+    <Card sx={{ height: 100, backgroundColor: "#ededed" }}>
+      <CardActionArea sx={{ height: "100%" }} href="https://google.com">
+        <CardContent>
+          <Typography>{children}</Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
   );
 };
 
