@@ -1,11 +1,29 @@
 import { red } from "@mui/material/colors";
 import { createTheme } from "@mui/material/styles";
+import createBreakpoints from "@mui/system/createTheme/createBreakpoints";
+
+const breakpoints = createBreakpoints({});
 
 const theme = createTheme({
   components: {
     MuiButton: {
       styleOverrides: {
-        root: { minWidth: 200 },
+        root: { maxWidth: 300 },
+        outlined: {
+          height: 50,
+          [breakpoints.up("xs")]: {
+            minWidth: 200,
+            backgroundColor: "white",
+          },
+          [breakpoints.up("sm")]: {
+            minWidth: 250,
+            backgroundColor: "white",
+          },
+          [breakpoints.up("md")]: {
+            minWidth: 250,
+            backgroundColor: "white",
+          },
+        },
       },
     },
   },
