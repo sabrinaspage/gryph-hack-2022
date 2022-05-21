@@ -26,11 +26,19 @@ const originalRows: transcript[] = [
     text: "breakfast page recording deter tendency technique agreement soap",
   },
   {
-    timestamp: "00:45:30",
+    timestamp: "00:52:30",
     text: "prize philosophy news visible available proof surface knife incident",
   },
   {
-    timestamp: "01:02:30",
+    timestamp: "00:52:30r",
+    text: "road production exaggerate withdrawal cancel sphere reveal formation arrow",
+  },
+  {
+    timestamp: "00:52:30r",
+    text: "road production exaggerate withdrawal cancel sphere reveal formation arrow",
+  },
+  {
+    timestamp: "00:52:30r",
     text: "road production exaggerate withdrawal cancel sphere reveal formation arrow",
   },
 ];
@@ -60,17 +68,11 @@ export default function BasicTable() {
           onChange={(searchVal: string) => requestSearch(searchVal)}
           onCancelSearch={() => cancelSearch()}
         />
-        <TableContainer style={{ height: 215 }}>
-          <Table
-            className={classes.table}
-            style={{
-              height: "max-content",
-            }}
-            aria-label="simple table"
-          >
+        <TableContainer style={{ maxHeight: 150 }}>
+          <Table className={classes.table} aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell style={{ width: 200 }}>Timestamp</TableCell>
+                <TableCell>Timestamp</TableCell>
                 <TableCell>Transcript</TableCell>
               </TableRow>
             </TableHead>
