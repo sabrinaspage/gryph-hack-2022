@@ -7,7 +7,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Run lint with Prettier
+          name: Format code with Prettier
           command: npx prettier --write .
       - restore_cache:
           key: dependency-cache-{{ checksum "yarn.lock" }}
