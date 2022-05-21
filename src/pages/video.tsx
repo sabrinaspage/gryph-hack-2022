@@ -8,6 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import Box from "@mui/system/Box";
+import TranscriptTable from "../components/TranscriptTable";
 import MainTemplate from "../template/main-template";
 
 // refactor with video and link to video when time comes
@@ -22,7 +23,7 @@ const TimestampVideoCard = ({
 }: TimestampVideoCardProps) => {
   console.log(thumbnailLink);
   return (
-    <ListItem disablePadding>
+    <ListItem disablePadding sx={{ display: "list-item" }}>
       <ListItemButton
         sx={{
           height: 200,
@@ -62,13 +63,13 @@ const Video = () => {
             <Card>
               <Box
                 sx={{
-                  height: 300,
+                  height: 280,
                   backgroundColor: "#A3A3A3",
                 }}
               />
             </Card>
             <Box py={2} />
-            <Card> transcript </Card>
+            <TranscriptTable />
           </Grid>
           <Grid item xs={1} px={6}>
             <nav aria-label="timestamps">
