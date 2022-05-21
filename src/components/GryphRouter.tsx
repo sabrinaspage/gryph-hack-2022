@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import ClassVideos from "../pages/class-videos";
 import Homepage from "../pages/homepage";
 import Livestream from "../pages/video";
 import Login from "../pages/login";
@@ -12,7 +11,6 @@ export default function GryphRouter() {
   return (
     <Router>
       <Routes>
-        <Route path="/class-videos" element={<ClassVideos />} />
         <Route path="/" element={<Homepage />} />
         <Route path="/livestream" element={<Livestream />} />
         <Route path="/login" element={<Login />} />
