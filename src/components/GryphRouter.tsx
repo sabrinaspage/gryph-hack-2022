@@ -1,10 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import ClassVideos from "../pages/class-videos";
 import Homepage from "../pages/homepage";
-import Livestream from "../pages/livestream";
+import Livestream from "../pages/video";
 import Login from "../pages/login";
 import Member from "../pages/member";
-import PrimaryVideo from "../pages/primary-video";
+import PrimaryVideo from "../pages/livestream";
 import Registration from "../pages/registration";
 import Statistics from "../pages/statistics";
 
