@@ -8,17 +8,17 @@ import Registration from "../pages/registration";
 import Statistics from "../pages/statistics";
 
 export default function GryphRouter() {
-  return (
-    <Router>
-      <Routes>
-        <Route path="/class-videos" element={<ClassVideos />} />
-        <Route path="/" element={<Homepage />} />
-        <Route path="/livestream" element={<Livestream />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/registration" element={<Registration />} />
-        <Route path="/statistics" element={<Statistics />} />
-        <Route path="/member" element={<Member />} />
-      </Routes>
-    </Router>
-  );
+	return (
+		<Router>
+			<Routes>
+				<Route path="/class-videos" element={<ClassVideos />} />
+				<Route path="/" element={<Homepage />} />
+				<Route path="/livestream" element={<Livestream />} />
+				<Route path="/login" element={<Login />} />
+				<Route path="/registration" element={<Registration />} />
+				<Route path="/statistics" element={<Statistics />} />
+				<Route path="/member" element={<Member />} />
+			</Routes>
+		</Router>
+	);
 }
