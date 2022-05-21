@@ -10,7 +10,7 @@ const MainTemplate = ({ children }: MainTemplateProps) => {
   return (
     <Box>
       <NavBar />
-      <Box pt={2} px={2}>
+      <Box pt={2} px={8}>
         {children}
       </Box>
     </Box>

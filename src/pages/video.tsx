@@ -1,5 +1,4 @@
 import {
-  Card,
   Grid,
   List,
   ListItem,
@@ -8,6 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import Box from "@mui/system/Box";
+import SpeakerCard from "../components/SpeakerCard";
 import TranscriptTable from "../components/TranscriptTable";
 import MainTemplate from "../template/main-template";
 
@@ -27,10 +27,13 @@ const TimestampVideoCard = ({
       <ListItemButton
         sx={{
           height: 200,
-          backgroundColor: "#A3A3A3",
+          borderRadius: 5,
+          backgroundColor: "#D9D9D9",
           "&:hover": {
             backgroundColor: "#C2C2C2",
           },
+          textAlign: "center",
+          verticalAlign: "bottom",
         }}
         component="a"
         href="#simple-list"
@@ -40,8 +43,11 @@ const TimestampVideoCard = ({
             height: "100%",
           }}
         />
+        <ListItemText
+          sx={{ color: "#A4A4A4", paddingTop: 20 }}
+          primary={title}
+        />
       </ListItemButton>
-      <ListItemText sx={{ color: "#A4A4A4" }} primary={title} />
     </ListItem>
   );
 };
@@ -50,41 +56,57 @@ const Video = () => {
   const arrOfTimestamps = [
     { thumbnailLink: "blah", title: "01:10:30 - 01:17:20" },
     { thumbnailLink: "blah2", title: "01:02:30 - 01:04:20" },
+    { thumbnailLink: "blah2", title: "01:02:30 - 01:04:20" },
+    { thumbnailLink: "blah2", title: "01:02:30 - 01:04:20" },
+    { thumbnailLink: "blah2", title: "01:02:30 - 01:04:20" },
   ];
 
   return (
     <MainTemplate>
       <Grid container>
-        <Grid item xs={12}>
-          <Typography variant="h5">Video Title</Typography>
+        <Typography component="span" variant="h5" fontWeight={"bold"}>
+          Video
+        </Typography>
+      </Grid>
+      <Grid container columnSpacing={4} columns={12}>
+        <Grid item xs={8}>
+          <Box
+            sx={{
+              height: "100%",
+              backgroundColor: "#D9D9D9",
+              borderRadius: 5,
+            }}
+          />
         </Grid>
-        <Grid container columns={{ xs: 3 }}>
-          <Grid item xs={2}>
-            <Card>
-              <Box
-                sx={{
-                  height: 280,
-                  backgroundColor: "#A3A3A3",
-                }}
-              />
-            </Card>
-            <Box py={2} />
-            <TranscriptTable />
-          </Grid>
-          <Grid item xs={1} px={6}>
-            <nav aria-label="timestamps">
-              <Typography variant="h5">Timestamps</Typography>
-              <List>
-                {arrOfTimestamps.map((timestamp, index) => (
-                  <TimestampVideoCard
-                    key={index}
-                    thumbnailLink={timestamp.thumbnailLink}
-                    title={timestamp.title}
-                  />
-                ))}
-              </List>
-            </nav>
-          </Grid>
+        <Grid item xs={4} maxHeight={350} style={{ overflow: "auto" }}>
+          <nav aria-label="timestamps">
+            <List
+              sx={{
+                "li:first-child": {
+                  paddingTop: 0,
+                },
+                li: {
+                  paddingTop: 4,
+                },
+              }}
+            >
+              {arrOfTimestamps.map((timestamp, index) => (
+                <TimestampVideoCard
+                  key={index}
+                  thumbnailLink={timestamp.thumbnailLink}
+                  title={timestamp.title}
+                />
+              ))}
+            </List>
+          </nav>
+        </Grid>
+      </Grid>
+      <Grid container columnSpacing={4} columns={12} pt={2}>
+        <Grid item xs={8}>
+          <TranscriptTable />
+        </Grid>
+        <Grid item xs={4}>
+          <SpeakerCard />
         </Grid>
       </Grid>
     </MainTemplate>
