@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -10,13 +10,14 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const theme = createTheme();
 
 export default function Registration() {
   const navigate = useNavigate();
+  const [emailError, setEmailError] = useState(false);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -30,8 +31,11 @@ export default function Registration() {
         password: data.get("password"),
       })
       .then((res) => {
+        setEmailError(false);
         navigate("/login");
-        console.log(res);
+      })
+      .catch((error) => {
+        setEmailError(true);
       });
   };
 
@@ -93,6 +97,8 @@ export default function Registration() {
                 name="email"
                 autoComplete="email"
                 autoFocus
+                error={emailError}
+                helperText={emailError && "Email already exists"}
               />
               <TextField
                 margin="normal"
