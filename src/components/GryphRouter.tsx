@@ -6,6 +6,7 @@ import Member from "../pages/member";
 import Livestream from "../pages/livestream";
 import Registration from "../pages/registration";
 import Statistics from "../pages/statistics";
+import Test from "../pages/test";
 
 export default function GryphRouter() {
   return (
@@ -18,6 +19,7 @@ export default function GryphRouter() {
         <Route path="/statistics" element={<Statistics />} />
         <Route path="/member" element={<Member />} />
         <Route path="/Livestream" element={<Livestream />} />
+        <Route path="/test" element={<Test />} />
       </Routes>
     </Router>
   );

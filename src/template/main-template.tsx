@@ -26,7 +26,7 @@ const MainTemplate = ({ children }: MainTemplateProps) => {
       </ThemeProvider>
     );
   }
-  // Else, only login is visible
+  // Else, redirects to login
   return <Navigate to="/login" />;
 };
 
