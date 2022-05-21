@@ -11,6 +11,9 @@ const theme = createTheme({
         root: { maxWidth: 300 },
         outlined: {
           height: 50,
+          fontSize: 16,
+          borderWidth: 2,
+          borderRadius: 8,
           [breakpoints.up("xs")]: {
             minWidth: 200,
             backgroundColor: "white",

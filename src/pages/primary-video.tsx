@@ -7,58 +7,125 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Box from "@mui/system/Box";
 import Typography from "@mui/material/Typography";
+import { ReactNode } from "react";
+
+interface FillerSectionProps {
+  children: ReactNode;
+}
+
+const FillerSection = ({ children }: FillerSectionProps) => {
+  return (
+    <Grid item xs={12} md={8}>
+      <Card
+        sx={{ minWidth: 275, borderRadius: 10, backgroundColor: "#fff7f6" }}
+      >
+        <CardContent>
+          <Typography variant="h3">{children}</Typography>
+        </CardContent>
+        <Box
+          sx={{
+            height: 200,
+            backgroundColor: "transparent",
+          }}
+        />
+      </Card>
+    </Grid>
+  );
+};
+
+interface RecordingSectionProps {
+  handleStartRecording: () => void;
+  handleManualRecording: () => void;
+}
+
+const RecordingSection = ({
+  handleStartRecording,
+  handleManualRecording,
+}: RecordingSectionProps) => {
+  return (
+    <Grid item xs={12} md={4}>
+      <Grid
+        container
+        rowSpacing={8}
+        sx={{
+          pt: {
+            lg: 7,
+            md: 7,
+          },
+          px: {
+            lg: 10,
+            md: 3,
+          },
+        }}
+      >
+        <Grid item xs={6} md={12}>
+          <Button
+            onClick={() => handleStartRecording}
+            variant="outlined"
+            startIcon={<RadioButtonCheckedIcon style={{ color: "red" }} />}
+          >
+            start recording
+          </Button>
+        </Grid>
+        <Grid item xs={6} md={12}>
+          <Button
+            onClick={() => handleManualRecording}
+            variant="outlined"
+            startIcon={<RadioButtonCheckedIcon style={{ color: "red" }} />}
+          >
+            manual recording
+          </Button>
+        </Grid>
+      </Grid>
+    </Grid>
+  );
+};
+
+interface ThumbnailCardProps {
+  children: ReactNode;
+}
+
+const ThumbnailCard = ({ children }: ThumbnailCardProps) => {
+  return (
+    <Card sx={{ height: 100, backgroundColor: "#ededed" }}>{children}</Card>
+  );
+};
 
 const PrimaryVideo = () => {
+  const onStartRecording = () => null;
+  const onManualRecording = () => null;
   const now = moment(new Date());
+  const thumbnailArray = Array.from(Array(8));
 
   return (
     <MainTemplate>
       <Grid container spacing={2}>
-        <Grid item xs={12} md={4}>
-          <Grid
-            container
-            rowSpacing={8}
-            sx={{
-              pt: {
-                lg: 7,
-                md: 7,
-              },
-              px: {
-                lg: 10,
-                md: 3,
-              },
-            }}
-          >
-            <Grid item xs={6} md={12}>
-              <Button
-                variant="outlined"
-                startIcon={<RadioButtonCheckedIcon style={{ color: "red" }} />}
-              >
-                start recording
-              </Button>
-            </Grid>
-            <Grid item xs={6} md={12}>
-              <Button
-                variant="outlined"
-                startIcon={<RadioButtonCheckedIcon style={{ color: "red" }} />}
-              >
-                manual recording
-              </Button>
+        {
+          <RecordingSection
+            handleStartRecording={onStartRecording}
+            handleManualRecording={onManualRecording}
+          />
+        }
+        {<FillerSection> {now.toString()} </FillerSection>}
+        <Grid item xs={12} py={1} />
+        <Grid item xs={12}>
+          <Grid item xs={12}>
+            <Typography variant="h4">Past Sessions</Typography>
+          </Grid>
+          <Grid item xs={12}>
+            <Grid
+              container
+              spacing={{ xs: 2, md: 3 }}
+              columns={{ xs: 2, sm: 3, md: 4 }}
+              pt={3}
+            >
+              {thumbnailArray.map((_, index) => (
+                <Grid item xs={1} sm={1} md={1} key={index}>
+                  <ThumbnailCard>{}</ThumbnailCard>
+                </Grid>
+              ))}
             </Grid>
           </Grid>
-        </Grid>
-        <Grid item xs={12} md={8}>
-          <Card sx={{ minWidth: 275 }}>
-            <CardContent>
-              <Typography variant="h2">{now.toString()}</Typography>
-            </CardContent>
-            <Box
-              sx={{
-                height: 100,
-                backgroundColor: "white",
-              }}
-            />
-          </Card>
         </Grid>
       </Grid>
     </MainTemplate>
