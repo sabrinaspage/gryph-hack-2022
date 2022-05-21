@@ -36,7 +36,7 @@ export default function Login() {
           type: "LOG_IN",
           userData: res.data,
         });
-        navigate("/video/id_here");
+        navigate("/");
       })
       .catch(() => {
         setAuthError(true);
