@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 
-const Livestream = () => {
+const Video = () => {
   return <Box> livestream </Box>;
 };
 
-export default Livestream;
+export default Video;

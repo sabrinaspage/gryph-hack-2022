@@ -124,7 +124,7 @@ const ThumbnailCard = ({ children }: ThumbnailCardProps) => {
   );
 };
 
-const PrimaryVideo = () => {
+const Livestream = () => {
   const onStartRecording = () => null;
   const onManualRecording = () => null;
   const now = moment(new Date());
@@ -165,4 +165,4 @@ const PrimaryVideo = () => {
   );
 };
 
-export default PrimaryVideo;
+export default Livestream;
