@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import GryphRouter from "./components/GryphRouter";
 import theme from "./styles/theme";
 import { ThemeProvider } from "@mui/material/styles";
+import Provider from "./states/Provider";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -10,7 +11,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <ThemeProvider theme={theme}>
     <React.StrictMode>
-      <GryphRouter />
+      <Provider>
+        <GryphRouter />
+      </Provider>
     </React.StrictMode>
   </ThemeProvider>
 );
