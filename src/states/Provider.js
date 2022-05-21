@@ -1,13 +1,13 @@
 import { createContext, useReducer } from "react";
 import reducer from "./reducer";
 import PropTypes from "prop-types";
-export const Context = createContext();
 
 // look here
-const initialState = {
-  userData: null,
-  isLoggedIn: false,
-};
+const initialState = JSON.parse(
+  localStorage.getItem("state") || "{ userData: {}, isLoggedIn: false }"
+);
+
+export const Context = createContext();
 
 export default function Provider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);

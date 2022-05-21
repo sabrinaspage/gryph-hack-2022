@@ -7,9 +7,9 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  <React.StrictMode>
-    <Provider>
+  <Provider>
+    <React.StrictMode>
       <GryphRouter />
-    </Provider>
-  </React.StrictMode>
+    </React.StrictMode>
+  </Provider>
 );

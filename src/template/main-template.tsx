@@ -2,9 +2,9 @@ import Box from "@mui/system/Box";
 import { ReactNode, useContext } from "react";
 import theme from "../styles/theme";
 import NavBar from "../components/NavBar";
-import Login from "../pages/login";
 import { Context } from "../states/Provider";
 import ThemeProvider from "@material-ui/styles/ThemeProvider";
+import { Navigate } from "react-router-dom";
 
 interface MainTemplateProps {
   children: ReactNode;
@@ -27,7 +27,7 @@ const MainTemplate = ({ children }: MainTemplateProps) => {
     );
   }
   // Else, only login is visible
-  return <Login />;
+  return <Navigate to="/login" />;
 };
 
 export default MainTemplate;
