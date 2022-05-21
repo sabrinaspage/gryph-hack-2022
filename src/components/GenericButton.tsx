@@ -6,7 +6,7 @@ interface GenericButtonProps {
 }
 
 const GenericButton = ({ children }: GenericButtonProps) => {
-	return <Button>{children}</Button>;
+  return <Button>{children}</Button>;
 };
 
 export default GenericButton;

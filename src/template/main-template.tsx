@@ -7,12 +7,12 @@ interface MainTemplateProps {
 }
 
 const MainTemplate = ({ children }: MainTemplateProps) => {
-	return (
-		<Box>
-			<NavBar />
-			{children}
-		</Box>
-	);
+  return (
+    <Box>
+      <NavBar />
+      {children}
+    </Box>
+  );
 };
 
 export default MainTemplate;
