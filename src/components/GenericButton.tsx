@@ -1,12 +1,12 @@
 import Button from "@mui/material/Button";
-import { ReactNode } from 'react';
- 
+import { ReactNode } from "react";
+
 interface GenericButtonProps {
-    children: ReactNode;
+  children: ReactNode;
 }
 
 const GenericButton = ({ children }: GenericButtonProps) => {
-    return <Button>{children}</Button>
-}
+  return <Button>{children}</Button>;
+};
 
 export default GenericButton;
