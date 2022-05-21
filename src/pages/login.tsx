@@ -24,7 +24,7 @@ export default function Login() {
     const data = new FormData(event.currentTarget);
 
     axios
-      .post("http://localhost:5000/users/login", {
+      .post("https://gryph-hack-2022.herokuapp.com/users/login", {
         email: data.get("email"),
         password: data.get("password"),
       })

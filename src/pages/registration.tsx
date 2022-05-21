@@ -24,7 +24,7 @@ export default function Registration() {
     const data = new FormData(event.currentTarget);
 
     axios
-      .post("http://localhost:5000/users", {
+      .post("https://gryph-hack-2022.herokuapp.com/users", {
         name: data.get("name"),
         type: 0,
         email: data.get("email"),
