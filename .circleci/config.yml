@@ -6,6 +6,9 @@ jobs:
       - image: cimg/node:16.13.2
     steps:
       - checkout
+      - node/install-packages:
+        cache-path: ~/node_modules
+        override-ci-command: npm install
       - run:
           name: Lint files
           command: yarn eslint "**/*.{ts,tsx}" --fix
