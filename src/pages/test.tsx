@@ -5,6 +5,8 @@ export default function RecordView() {
     <div>
       <ReactMediaRecorder
         video
+        screen
+        audio={false}
         render={({ status, startRecording, stopRecording, mediaBlobUrl }) => (
           <div>
             <p>{status}</p>
