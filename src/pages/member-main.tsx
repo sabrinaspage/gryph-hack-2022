@@ -80,7 +80,6 @@ const RecordingSection = ({
   handleStartRecording,
   handleManualRecording,
 }: RecordingSectionProps) => {
-  const [session, setSession] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [tooltipOpen, setToolTipOpen] = useState(false);
   const [checked, setChecked] = useState(false);
@@ -97,48 +96,7 @@ const RecordingSection = ({
         handleNameChange={() => null}
       />
       <Grid item xs={6} md={12} justifyContent="center" textAlign="center">
-        {!session && (
-          <>
-            <Box py={2} />
-            <Box
-              component={AddIcon}
-              boxShadow={3}
-              onClick={() => setSession(true)}
-              style={{
-                height: 200,
-                width: "100%",
-                color: "#F3694D",
-                cursor: "pointer",
-                backgroundColor: "white",
-                borderRadius: 50,
-                boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
-              }}
-            />
-            <Typography component="span" display="block" pt={1}>
-              Start Session
-              <LightTooltip
-                title={
-                  <Box sx={{ maxHeight: 200, maxWidth: 200, color: "black" }}>
-                    <Checkbox
-                      checked={checked}
-                      onClick={() => setChecked(!checked)}
-                    />
-                    Record Manually
-                  </Box>
-                }
-                open={tooltipOpen}
-                arrow
-              >
-                <IconButton onClick={() => setToolTipOpen(!tooltipOpen)}>
-                  <ClickAwayListener onClickAway={() => setToolTipOpen(false)}>
-                    <Box component={KeyboardArrowDownIcon} />
-                  </ClickAwayListener>
-                </IconButton>
-              </LightTooltip>
-            </Typography>
-          </>
-        )}
-        {session && checked && !recording && (
+        {!recording && (
           <>
             <Box py={5} />
             <StartRecording
@@ -147,38 +105,33 @@ const RecordingSection = ({
               }}
             />
             <Box py={1} />
-            <StopSession
-              handleClick={() => {
-                setDialogOpen(true);
-                setSession(false);
-              }}
-            />
+            <Box sx={{ maxHeight: 200, maxWidth: 200, color: "black", pl: 3 }}>
+              <Checkbox
+                checked={checked}
+                onClick={() => setChecked(!checked)}
+              />
+              No facial recognition
+            </Box>
           </>
         )}
-        {session && checked && recording && (
+        {checked && recording && (
           <>
             <Box py={5} />
             <StopRecording
               handleClick={() => {
                 setRecording(false);
-              }}
-            />
-            <Box py={1} />
-            <StopSession
-              handleClick={() => {
                 setDialogOpen(true);
-                setSession(false);
               }}
             />
           </>
         )}
-        {session && !checked && (
+        {!checked && recording && (
           <>
             <Box py={5} />
-            <StopSession
+            <StopRecording
               handleClick={() => {
+                setRecording(false);
                 setDialogOpen(true);
-                setSession(false);
               }}
             />
           </>
