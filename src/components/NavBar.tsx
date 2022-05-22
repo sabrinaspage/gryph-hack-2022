@@ -17,7 +17,7 @@ export default function NavBar() {
       type: "LOG_OUT",
       userData: {},
     });
-    navigate("/login");
+    navigate("/");
   };
 
   return (

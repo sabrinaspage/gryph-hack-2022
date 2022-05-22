@@ -37,7 +37,7 @@ const Login = () => {
           type: "LOG_IN",
           userData: res.data,
         });
-        navigate("/");
+        navigate("/member");
       })
       .catch(() => {
         setAuthError(true);
@@ -54,9 +54,6 @@ const Login = () => {
           alignItems: "center",
         }}
       >
-        <Typography component="h1" variant="h5">
-          Log In
-        </Typography>
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
           <TextField
             margin="normal"
@@ -125,7 +122,7 @@ const Register = () => {
       })
       .then(() => {
         setEmailError(false);
-        navigate("/login");
+        navigate("/member");
       })
       .catch(() => {
         setEmailError(true);
@@ -142,9 +139,6 @@ const Register = () => {
           alignItems: "center",
         }}
       >
-        <Typography component="h1" variant="h5">
-          Sign Up
-        </Typography>
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
           <TextField
             margin="normal"
