@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import { SvgIcon, ThemeProvider } from "@material-ui/core";
-import Logo from "../images/Logo.svg";
+import Logo from "../images/logo.svg";
 import theme from "../styles/theme";
 import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "@mui/material/GlobalStyles";

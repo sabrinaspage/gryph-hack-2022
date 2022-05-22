@@ -1,7 +1,7 @@
 import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
 import { Context } from "../states/Provider";
-import Logo from "../images/Logo.svg";
+import Logo from "../images/logo.svg";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import QuestionCircle from "../images/question-circle.svg";
