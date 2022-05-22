@@ -7,12 +7,31 @@ import Typography from "@mui/material/Typography";
 import "@tensorflow/tfjs";
 import * as qna from "@tensorflow-models/qna";
 import { Answer } from "@tensorflow-models/qna/dist/question_and_answer";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@mui/material";
+import { makeStyles, createStyles, Container } from "@material-ui/core";
+import RotateRightTwoToneIcon from "@mui/icons-material/RotateRightTwoTone";
 
 interface SpeakerCardProps {
   fullTranscript: string;
 }
+
+const useStyles = makeStyles(() =>
+  createStyles({
+    rotateIcon: {
+      animation: "$spin 2s linear infinite",
+      color: "white",
+    },
+    "@keyframes spin": {
+      "0%": {
+        transform: "rotate(-360deg)",
+      },
+      "100%": {
+        transform: "rotate(0deg)",
+      },
+    },
+  })
+);
 
 export default function SpeakerCard({ fullTranscript }: SpeakerCardProps) {
   const [result, setResult] = useState<Answer>({
@@ -34,6 +53,8 @@ export default function SpeakerCard({ fullTranscript }: SpeakerCardProps) {
     return answers;
   };
 
+  const classes = useStyles();
+
   return (
     <Card
       sx={{
@@ -45,7 +66,7 @@ export default function SpeakerCard({ fullTranscript }: SpeakerCardProps) {
     >
       <TextField
         id="outlined-textarea"
-        label="What did you miss?"
+        label="Looking for an answer?"
         placeholder="Ask away..."
         value={question}
         onChange={(e) => setQuestion(e.target.value)}
@@ -79,9 +100,15 @@ export default function SpeakerCard({ fullTranscript }: SpeakerCardProps) {
             setLoading(false);
           }}
         >
-          <Typography variant="h6" component="div">
-            Ask
-          </Typography>
+          <Container maxWidth="sm">
+            {loading ? (
+              <RotateRightTwoToneIcon className={classes.rotateIcon} />
+            ) : (
+              <Typography textTransform="none" variant="h6" color="white">
+                Ask
+              </Typography>
+            )}
+          </Container>
         </CardActionArea>
       </CardContent>
       <Dialog open={dialog && !loading} onClose={() => setDialog(false)}>
@@ -96,8 +123,8 @@ export default function SpeakerCard({ fullTranscript }: SpeakerCardProps) {
             </>
           ) : (
             <>
-              <Typography variant="h2">No answer!</Typography>
-              <Typography variant="h5">Enter a new question.</Typography>
+              <Typography variant="h4">No answer!</Typography>
+              <Typography variant="h6">Enter a new question.</Typography>
             </>
           )}
         </DialogContent>
