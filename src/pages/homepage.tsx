@@ -37,7 +37,6 @@ const DrawerContent = () => {
             </Typography>
             <Box
               sx={{
-                borderColor: "divider",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
@@ -48,7 +47,13 @@ const DrawerContent = () => {
                   sx={{
                     borderBottom: "black",
                     borderStyle: "solid",
-                    mr: 10,
+                    mr: 0,
+                    width: 300,
+                    ...(section === "login" && { borderBottom: "red" }),
+                    ...(section === "register" && {
+                      borderBottom: "#C4C4C4",
+                      color: "#C4C4C4",
+                    }),
                   }}
                   label="Login"
                   onClick={() => setSection("login")}
@@ -57,6 +62,12 @@ const DrawerContent = () => {
                   sx={{
                     borderBottom: "black",
                     borderStyle: "solid",
+                    width: 300,
+                    ...(section === "register" && { borderBottom: "red" }),
+                    ...(section === "login" && {
+                      borderBottom: "#C4C4C4",
+                      color: "#C4C4C4",
+                    }),
                   }}
                   label="Register"
                   onClick={() => setSection("register")}
