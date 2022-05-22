@@ -26,8 +26,8 @@ const MainTemplate = ({ children }: MainTemplateProps) => {
       </ThemeProvider>
     );
   }
-  // Else, redirects to login
-  return <Navigate to="/login" />;
+  // Else, redirects to homepage
+  return <Navigate to="/" />;
 };
 
 export default MainTemplate;
