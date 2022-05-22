@@ -12,7 +12,7 @@ export const ThumbnailCard = ({
   videoId,
   imageUrl,
 }: ThumbnailCardProps) => {
-  console.log(imageUrl);
+  console.log(videoId);
   return (
     <Card
       sx={{

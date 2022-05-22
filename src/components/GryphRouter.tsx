@@ -8,7 +8,7 @@ export default function GryphRouter() {
   return (
     <Router>
       <Routes>
-        <Route path="/video/:videoId" element={<Video />} />
+        <Route path="/video/:sessionId" element={<Video />} />
         <Route path="/" element={<Homepage />} />
         <Route path="/member" element={<Member />} />
         <Route path="/test" element={<Test />} />
