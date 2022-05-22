@@ -56,6 +56,7 @@ const DrawerContent = () => {
                     }),
                   }}
                   label="Login"
+                  value={section}
                   onClick={() => setSection("login")}
                 />
                 <Tab
@@ -69,6 +70,7 @@ const DrawerContent = () => {
                       color: "#C4C4C4",
                     }),
                   }}
+                  value={section}
                   label="Register"
                   onClick={() => setSection("register")}
                 />

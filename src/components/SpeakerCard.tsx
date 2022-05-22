@@ -4,7 +4,50 @@ import CardContent from "@mui/material/CardContent";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 
-export default function ImgMediaCard() {
+import "@tensorflow/tfjs";
+import * as qna from "@tensorflow-models/qna";
+import { Answer } from "@tensorflow-models/qna/dist/question_and_answer";
+import { useEffect, useState } from "react";
+import {
+  ClickAwayListener,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+} from "@mui/material";
+
+interface SpeakerCardProps {
+  fullTranscript: string;
+}
+
+export default function SpeakerCard({ fullTranscript }: SpeakerCardProps) {
+  const [result, setResult] = useState<Answer>({
+    text: "",
+    score: 0,
+    startIndex: 0,
+    endIndex: 0,
+  });
+  const [question, setQuestion] = useState("What is the max count of team?");
+  const [dialog, setDialog] = useState(false);
+
+  useEffect(() => {
+    const fetchAnswer = async () => {
+      const answers = await handleAsk();
+      console.log(answers);
+      setResult(answers[0]);
+    };
+
+    fetchAnswer();
+  }, [dialog]);
+
+  const handleAsk = async () => {
+    console.log("Loading Model");
+    const model = await qna.load();
+    console.log("Loading Answers");
+    console.log(fullTranscript);
+    const answers = await model.findAnswers(question, fullTranscript);
+    return answers;
+  };
+
   return (
     <Card
       sx={{
@@ -18,6 +61,8 @@ export default function ImgMediaCard() {
         id="outlined-textarea"
         label="What did you miss?"
         placeholder="Ask away..."
+        value={question}
+        onChange={(e) => setQuestion(e.target.value)}
         rows={3}
         multiline
         sx={{
@@ -28,7 +73,6 @@ export default function ImgMediaCard() {
           borderRadius: 2,
         }}
       />
-
       <CardContent
         sx={{
           backgroundColor: "#F3694D",
@@ -40,12 +84,26 @@ export default function ImgMediaCard() {
           verticalAlign: "center",
         }}
       >
-        <CardActionArea href="#">
+        <CardActionArea
+          onClick={() => {
+            handleAsk();
+            setDialog(true);
+          }}
+        >
           <Typography variant="h6" component="div">
             Ask
           </Typography>
         </CardActionArea>
       </CardContent>
+      <Dialog open={dialog} onClose={() => setDialog(false)}>
+        <DialogTitle>Your answer is...</DialogTitle>
+        <DialogContent>
+          <Typography variant="h2"> {result.text} </Typography>
+          <Typography variant="h5">
+            With accuracy... {result["score"].toFixed(2)}%
+          </Typography>
+        </DialogContent>
+      </Dialog>
     </Card>
   );
 }

@@ -8,11 +8,12 @@ import {
 } from "@mui/material";
 import Box from "@mui/system/Box";
 import SpeakerCard from "../components/SpeakerCard";
-import TranscriptTable from "../components/TranscriptTable";
+import TranscriptTable, { transcript } from "../components/TranscriptTable";
 import MainTemplate from "../template/main-template";
 import LightBackground from "../images/lighterbg.png";
 import GlobalStyles from "@mui/styled-engine-sc/GlobalStyles";
 import { useParams } from "react-router-dom";
+import { arrOfTimestamps, originalRows } from "../consts";
 
 // refactor with video and link to video when time comes
 // video thumbnail will be in a clickable button, yay
@@ -56,15 +57,13 @@ const TimestampVideoCard = ({
 };
 
 const Video = () => {
-  const arrOfTimestamps = [
-    { thumbnailLink: "blah", title: "01:10:30 - 01:17:20" },
-    { thumbnailLink: "blah2", title: "01:02:30 - 01:04:20" },
-    { thumbnailLink: "blah2", title: "01:02:30 - 01:04:20" },
-    { thumbnailLink: "blah2", title: "01:02:30 - 01:04:20" },
-    { thumbnailLink: "blah2", title: "01:02:30 - 01:04:20" },
-  ];
-
   const { videoId } = useParams();
+
+  const fullTranscript = originalRows
+    .map((row) => {
+      return row.text;
+    })
+    .join(" ");
 
   return (
     <MainTemplate>
@@ -95,7 +94,7 @@ const Video = () => {
           <nav aria-label="timestamps">
             <List
               sx={{
-                "li:first-child": {
+                "li:first-of-type": {
                   paddingTop: 0,
                 },
                 li: {
@@ -116,10 +115,10 @@ const Video = () => {
       </Grid>
       <Grid container columnSpacing={4} columns={12} pt={2}>
         <Grid item xs={8}>
-          <TranscriptTable />
+          <TranscriptTable {...{ originalRows }} />
         </Grid>
         <Grid item xs={4}>
-          <SpeakerCard />
+          <SpeakerCard {...{ fullTranscript }} />
         </Grid>
       </Grid>
     </MainTemplate>

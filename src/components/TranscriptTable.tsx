@@ -8,7 +8,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import SearchBar from "material-ui-search-bar";
 
-interface transcript {
+export interface transcript {
   timestamp: string;
   text: string;
 }
@@ -19,30 +19,11 @@ const useStyles = makeStyles({
   },
 });
 
-const originalRows: transcript[] = [
-  {
-    timestamp: "00:22:05",
-    text: "breakfast page recording deter tendency technique agreement soap breakfast page recording deter tendency technique agreement soap",
-  },
-  {
-    timestamp: "00:28:30",
-    text: "prize philosophy news visible available proof surface knife incident",
-  },
-  {
-    timestamp: "00:36:30",
-    text: "road production exaggerate withdrawal cancel sphere reveal formation arrow",
-  },
-  {
-    timestamp: "00:42:30",
-    text: "road production exaggerate withdrawal cancel sphere reveal formation arrow",
-  },
-  {
-    timestamp: "00:53:30",
-    text: "road production exaggerate withdrawal cancel sphere reveal formation arrow",
-  },
-];
+interface BasicTableProps {
+  originalRows: transcript[];
+}
 
-export default function BasicTable() {
+export default function BasicTable({ originalRows }: BasicTableProps) {
   const [rows, setRows] = useState<transcript[]>(originalRows);
   const [searched, setSearched] = useState<string>("");
   const classes = useStyles();
