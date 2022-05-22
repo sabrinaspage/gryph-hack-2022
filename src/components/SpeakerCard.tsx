@@ -1,6 +1,7 @@
 import Card from "@mui/material/Card";
 import CardActionArea from "@mui/material/CardActionArea";
 import CardContent from "@mui/material/CardContent";
+import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 
 export default function ImgMediaCard() {
@@ -8,23 +9,29 @@ export default function ImgMediaCard() {
     <Card
       sx={{
         maxWidth: "100%",
+        boxShadow: "none",
         borderRadius: 2,
-        backgroundColor: "#D9D9D9",
+        backgroundColor: "transparent",
       }}
     >
-      <CardContent
-        component="div"
+      <TextField
+        id="outlined-textarea"
+        label="What did you miss?"
+        placeholder="Ask away..."
+        rows={3}
+        multiline
         sx={{
-          backgroundColor: "#8EBDA6",
-          height: 100,
+          backgroundColor: "white",
+          width: "96%",
           mx: 1,
           mt: 1,
           borderRadius: 2,
         }}
       />
+
       <CardContent
         sx={{
-          backgroundColor: "#B5AEAE",
+          backgroundColor: "#F3694D",
           height: 20,
           mx: 1,
           my: 1,
@@ -35,7 +42,7 @@ export default function ImgMediaCard() {
       >
         <CardActionArea href="#">
           <Typography variant="h6" component="div">
-            ask
+            Ask
           </Typography>
         </CardActionArea>
       </CardContent>

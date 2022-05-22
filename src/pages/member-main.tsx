@@ -1,6 +1,5 @@
 import Grid from "@mui/material/Grid";
 import MainTemplate from "../template/main-template";
-import moment from "moment";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Box from "@mui/system/Box";
@@ -173,11 +172,6 @@ const ThumbnailCard = ({ children }: ThumbnailCardProps) => {
 const MemberMain = () => {
   const onStartRecording = () => null;
   const onManualRecording = () => null;
-  const now = new Date();
-  const timeNow = now.toLocaleTimeString();
-  const dayOfWeek = now.toLocaleDateString("default", { weekday: "long" });
-  const month = now.toLocaleDateString("default", { month: "long" });
-  const dateNow = `${dayOfWeek}, ${month} ${now.getDay()}, ${now.getFullYear()}`;
   const thumbnailArray = Array.from(Array(8));
 
   return (

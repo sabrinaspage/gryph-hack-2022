@@ -10,6 +10,8 @@ import Box from "@mui/system/Box";
 import SpeakerCard from "../components/SpeakerCard";
 import TranscriptTable from "../components/TranscriptTable";
 import MainTemplate from "../template/main-template";
+import LightBackground from "../images/lighterbg.png";
+import GlobalStyles from "@mui/styled-engine-sc/GlobalStyles";
 
 // refactor with video and link to video when time comes
 // video thumbnail will be in a clickable button, yay
@@ -63,6 +65,14 @@ const Video = () => {
 
   return (
     <MainTemplate>
+      <GlobalStyles
+        styles={{
+          body: {
+            backgroundImage: `url(${LightBackground})`,
+            backgroundSize: "100%",
+          },
+        }}
+      />
       <Grid container>
         <Typography component="span" variant="h5" fontWeight={"bold"}>
           Video

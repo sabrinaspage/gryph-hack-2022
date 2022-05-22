@@ -1,7 +1,7 @@
 import AppBar from "@mui/material/AppBar";
 import Button from "@mui/material/Button";
 import { Context } from "../states/Provider";
-import Logo from "../images/logo.svg";
+import Logo from "../images/Logo.svg";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import QuestionCircle from "../images/question-circle.svg";
@@ -33,6 +33,9 @@ export default function NavBar() {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          paddingLeft: 20,
+          paddingTop: 20,
+          paddingBottom: 0,
         }}
       >
         <Box component="div">

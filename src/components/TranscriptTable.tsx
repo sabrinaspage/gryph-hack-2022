@@ -4,7 +4,6 @@ import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import SearchBar from "material-ui-search-bar";
@@ -23,22 +22,22 @@ const useStyles = makeStyles({
 const originalRows: transcript[] = [
   {
     timestamp: "00:22:05",
-    text: "breakfast page recording deter tendency technique agreement soap",
+    text: "breakfast page recording deter tendency technique agreement soap breakfast page recording deter tendency technique agreement soap",
   },
   {
-    timestamp: "00:52:30",
+    timestamp: "00:28:30",
     text: "prize philosophy news visible available proof surface knife incident",
   },
   {
-    timestamp: "00:52:30r",
+    timestamp: "00:36:30",
     text: "road production exaggerate withdrawal cancel sphere reveal formation arrow",
   },
   {
-    timestamp: "00:52:30r",
+    timestamp: "00:42:30",
     text: "road production exaggerate withdrawal cancel sphere reveal formation arrow",
   },
   {
-    timestamp: "00:52:30r",
+    timestamp: "00:53:30",
     text: "road production exaggerate withdrawal cancel sphere reveal formation arrow",
   },
 ];
@@ -70,19 +69,19 @@ export default function BasicTable() {
         />
         <TableContainer style={{ maxHeight: 150 }}>
           <Table className={classes.table} aria-label="simple table">
-            <TableHead>
-              <TableRow>
-                <TableCell>Timestamp</TableCell>
-                <TableCell>Transcript</TableCell>
-              </TableRow>
-            </TableHead>
             <TableBody>
               {rows.map((row) => (
                 <TableRow key={row.timestamp}>
-                  <TableCell component="th" scope="row">
+                  <TableCell
+                    component="th"
+                    scope="row"
+                    style={{ borderBottom: "none", color: "#A4A4A4" }}
+                  >
                     {row.timestamp}
                   </TableCell>
-                  <TableCell>{row.text}</TableCell>
+                  <TableCell style={{ borderBottom: "none", color: "#A4A4A4" }}>
+                    {row.text}
+                  </TableCell>
                 </TableRow>
               ))}
             </TableBody>
