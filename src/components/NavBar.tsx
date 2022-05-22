@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import QuestionCircle from "../images/question-circle.svg";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
+import Link from "@mui/material/Link";
 
 export default function NavBar() {
   const navigate = useNavigate();
@@ -39,7 +40,9 @@ export default function NavBar() {
         }}
       >
         <Box component="div">
-          <img src={Logo} />
+          <Link href="/member">
+            <img src={Logo} />
+          </Link>
         </Box>
         <Box component="div" width={200}>
           <Grid container columns={3}>
