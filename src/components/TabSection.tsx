@@ -93,11 +93,6 @@ const Login = () => {
                 Forgot password?
               </Link>
             </Grid>
-            <Grid item>
-              <Link href="/registration" variant="body2">
-                Don't have an account? Sign Up
-              </Link>
-            </Grid>
           </Grid>
         </Box>
       </Box>
@@ -176,13 +171,6 @@ const Register = () => {
               Sign Up
             </Button>
           </Box>
-          <Grid container>
-            <Grid item>
-              <Link href="/login" variant="body2">
-                Have an account? Log in!
-              </Link>
-            </Grid>
-          </Grid>
         </Box>
       </Box>
     </Grid>
