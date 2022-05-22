@@ -14,17 +14,21 @@ import { StartRecording, StopRecording } from "../components/Button";
 
 const FillerSection = () => {
   const now = new Date();
-  const [cTime, setTime] = useState(now);
+  const dayOfWeek = now.toLocaleDateString("default", { weekday: "long" });
+  const month = now.toLocaleDateString("default", { month: "long" });
+  const cDate = `${dayOfWeek}, ${month} ${now.getDate()}, ${now.getFullYear()}`;
 
-  const timeNow = now.toLocaleTimeString();
-  const dayOfWeek = cTime.toLocaleDateString("default", { weekday: "long" });
-  const month = cTime.toLocaleDateString("default", { month: "long" });
-  const dateNow = `${dayOfWeek}, ${month} ${now.getDay()}, ${now.getFullYear()}`;
+  const [cTime, setTime] = useState(new Date().toLocaleTimeString());
+
   useEffect(() => {
-    setInterval(() => {
-      setTime(now);
+    const interval = setInterval(() => {
+      setTime(new Date().toLocaleTimeString());
     }, 1000);
-  });
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
   return (
     <Grid item xs={12} md={8}>
@@ -44,10 +48,10 @@ const FillerSection = () => {
               fontWeight="bold"
               component="div"
             >
-              {timeNow} EST
+              {cTime} EST
             </Typography>
             <Typography variant="h5" fontWeight="thin" color="#F3694D">
-              {dateNow}
+              {cDate}
             </Typography>
           </Box>
         </CardContent>
