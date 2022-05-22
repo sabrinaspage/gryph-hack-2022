@@ -2,7 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import GoToArrow from "../images/GoToArrow.svg";
-import { SvgIcon, ThemeProvider } from "@material-ui/core";
+import { ThemeProvider } from "@material-ui/core";
 import Logo from "../images/logo.svg";
 import theme from "../styles/theme";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -15,6 +15,7 @@ import TabSection, { Section } from "../components/TabSection";
 import { useState } from "react";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import LandingGraphic from "../images/landing_graphic-01.png";
+import HomePageCommentary from "../components/HomePageCommentary";
 
 const DrawerContent = () => {
   const [section, setSection] = useState<Section>("login");
@@ -113,6 +114,7 @@ export default function Homepage() {
           },
         }}
       />
+      <HomePageCommentary />
       <React.Fragment key={"right"}>
         <Box
           pr={8}
@@ -122,10 +124,11 @@ export default function Homepage() {
             alignItems: "end",
             height: "100vh",
             pb: 5,
+            zIndex: 10,
           }}
         >
           <Box
-            sx={{ cursor: "pointer" }}
+            sx={{ cursor: "pointer", transform: "scale(1.0)" }}
             component="img"
             onClick={toggleDrawer(true)}
             src={GoToArrow}
