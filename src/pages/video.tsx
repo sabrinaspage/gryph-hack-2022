@@ -13,21 +13,23 @@ import MainTemplate from "../template/main-template";
 import LightBackground from "../images/lighterbg.png";
 import GlobalStyles from "@mui/styled-engine-sc/GlobalStyles";
 import { useParams } from "react-router-dom";
-import { arrOfTimestamps, originalRows } from "../consts";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-// refactor with video and link to video when time comes
-// video thumbnail will be in a clickable button, yay
+export type SessionType = {
+  end_time: string;
+  id: string;
+  name: string;
+  session_id: string;
+  start_time: string;
+  transcript: string;
+  video_order: string;
+};
+
 interface TimestampVideoCardProps {
-  thumbnailLink: string;
   title: string;
 }
-const TimestampVideoCard = ({
-  thumbnailLink,
-  title,
-}: TimestampVideoCardProps) => {
-  console.log(thumbnailLink);
+const TimestampVideoCard = ({ title }: TimestampVideoCardProps) => {
   return (
     <ListItem disablePadding sx={{ display: "list-item" }}>
       <ListItemButton
@@ -60,14 +62,16 @@ const TimestampVideoCard = ({
 
 const Video = () => {
   const { sessionId } = useParams();
+  const [sessionInfo, setSessionInfo] = useState<SessionType[]>();
+  const [thisSession, setThisSession] = useState<SessionType>();
+  console.log(sessionId);
 
-  const fullTranscript = originalRows
-    .map((row) => {
-      return row.text;
+  const fullTranscript = sessionInfo
+    ?.slice(1)
+    .map((session) => {
+      return session.transcript;
     })
     .join(" ");
-
-  const [sessionInfo, setSessionInfo] = useState();
 
   useEffect(() => {
     const listOfSessions = () => {
@@ -86,6 +90,23 @@ const Video = () => {
       }
     };
 
+    const thisSession = () => {
+      if (sessionId != undefined) {
+        axios
+          .get(
+            `https://gryph-hack-2022.herokuapp.com/sessions/data/${sessionId}/`
+          )
+          .then(async (res: any) => {
+            console.log(res.data);
+            setThisSession(res.data[0]);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }
+    };
+
+    thisSession();
     listOfSessions();
   }, []);
   console.log(sessionInfo);
@@ -102,7 +123,7 @@ const Video = () => {
       />
       <Grid container>
         <Typography component="span" variant="h5" fontWeight={"bold"}>
-          Video {sessionId}
+          {thisSession?.name}
         </Typography>
       </Grid>
       <Grid container columnSpacing={4} columns={12}>
@@ -127,12 +148,8 @@ const Video = () => {
                 },
               }}
             >
-              {arrOfTimestamps.map((timestamp, index) => (
-                <TimestampVideoCard
-                  key={index}
-                  thumbnailLink={timestamp.thumbnailLink}
-                  title={timestamp.title}
-                />
+              {sessionInfo?.slice(1).map((timestamp, index) => (
+                <TimestampVideoCard key={index} title={timestamp.name} />
               ))}
             </List>
           </nav>
@@ -140,7 +157,7 @@ const Video = () => {
       </Grid>
       <Grid container columnSpacing={4} columns={12} pt={2}>
         <Grid item xs={8}>
-          <TranscriptTable {...{ originalRows }} />
+          <TranscriptTable transcriptRows={sessionInfo} />
         </Grid>
         <Grid item xs={4}>
           <SpeakerCard {...{ fullTranscript }} />

@@ -10,6 +10,7 @@ import { Buffer } from "buffer";
 import axios from "axios";
 import { Context } from "../states/Provider";
 import { useContext, useEffect, useState } from "react";
+import { Box } from "@mui/material";
 
 window.Buffer = window.Buffer || Buffer;
 
@@ -77,15 +78,16 @@ const MemberMain = () => {
         <FillerSection />
         <Grid item xs={12} py={1} />
         <Grid item xs={12}>
-          <Grid item xs={12}>
-            <Typography variant="h4">Past Sessions</Typography>
-          </Grid>
+          <Typography variant="h4">Past Sessions</Typography>
+          <Box py={2} />
           <Grid item xs={12}>
             <Grid
               container
-              spacing={{ xs: 2, md: 3 }}
-              columns={{ xs: 2, sm: 3, md: 4 }}
-              pt={3}
+              columnSpacing={{ xs: 4 }}
+              rowSpacing={{ xs: 4 }}
+              columns={{ xs: 4 }}
+              maxHeight={200}
+              overflow="auto"
             >
               {videoList.map((video, index) => (
                 <Grid item xs={1} sm={1} md={1} key={index}>
