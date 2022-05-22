@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Video from "../pages/video";
-import Login from "../pages/login";
 import Main from "../pages/member-main";
 import Livestream from "../pages/member-main";
 import Registration from "../pages/registration";
