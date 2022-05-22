@@ -82,7 +82,12 @@ const Login = () => {
             label="Remember me"
           />
           <Box sx={{ mt: 3, mb: 2 }}>
-            <Button type="submit" fullWidth variant="contained" sx={{ py: 2 }}>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ py: 2, borderRadius: 50 }}
+            >
               Sign In
             </Button>
           </Box>

@@ -11,6 +11,7 @@ interface SessionDialogProps {
   isOpen: boolean;
   handleOpen: (value: boolean) => void;
   handleNameChange: (name: string) => void;
+  onSubmitNameChange: (name: string) => void;
 }
 
 export default function SessionDialog({
@@ -18,6 +19,7 @@ export default function SessionDialog({
   isOpen,
   handleOpen,
   handleNameChange,
+  onSubmitNameChange,
 }: SessionDialogProps) {
   const [sessionName, setSessionName] = useState<string>("");
 
@@ -53,6 +55,7 @@ export default function SessionDialog({
             onClick={() => {
               handleOpen(false);
               setSessionName("");
+              onSubmitNameChange(sessionName);
             }}
           >
             save
