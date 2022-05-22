@@ -7,19 +7,10 @@ import Typography from "@mui/material/Typography";
 import { ReactNode, useEffect, useState } from "react";
 import SessionDialog from "../components/SessionDialog";
 import CardActionArea from "@mui/material/CardActionArea";
-import AddIcon from "@mui/icons-material/Add";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import IconButton from "@mui/material/IconButton";
-import { LightTooltip } from "../components/Tooltip";
 import LightBackground from "../images/lighterbg.png";
 import Checkbox from "@mui/material/Checkbox";
 import GlobalStyles from "@mui/material/GlobalStyles";
-import {
-  StartRecording,
-  StopRecording,
-  StopSession,
-} from "../components/Button";
-import { ClickAwayListener } from "@mui/material";
+import { StartRecording, StopRecording } from "../components/Button";
 
 const FillerSection = () => {
   const now = new Date();
@@ -71,21 +62,10 @@ const FillerSection = () => {
   );
 };
 
-interface RecordingSectionProps {
-  handleStartRecording?: () => void;
-  handleManualRecording?: () => void;
-}
-
-const RecordingSection = ({
-  handleStartRecording,
-  handleManualRecording,
-}: RecordingSectionProps) => {
+const RecordingSection = () => {
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [tooltipOpen, setToolTipOpen] = useState(false);
   const [checked, setChecked] = useState(false);
   const [recording, setRecording] = useState(false);
-
-  console.log(handleStartRecording, handleManualRecording);
 
   return (
     <>
@@ -169,8 +149,6 @@ const ThumbnailCard = ({ title, videoId, imageUrl }: ThumbnailCardProps) => {
 };
 
 const MemberMain = () => {
-  const onStartRecording = () => null;
-  const onManualRecording = () => null;
   const thumbnailArray = Array.from(Array(8));
 
   return (
@@ -202,12 +180,7 @@ const MemberMain = () => {
               },
             }}
           >
-            {
-              <RecordingSection
-                handleStartRecording={onStartRecording}
-                handleManualRecording={onManualRecording}
-              />
-            }
+            <RecordingSection />
           </Grid>
         </Grid>
         <FillerSection />
