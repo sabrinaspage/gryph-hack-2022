@@ -1,13 +1,12 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import GoToArrow from "../images/GoToArrow.svg";
 import { SvgIcon, ThemeProvider } from "@material-ui/core";
 import Logo from "../images/logo.svg";
 import theme from "../styles/theme";
 import CssBaseline from "@mui/material/CssBaseline";
 import GlobalStyles from "@mui/material/GlobalStyles";
-import Background from "../images/bluegradient-1080p.png";
 import Grid from "@mui/material/Grid";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -15,6 +14,7 @@ import Typography from "@mui/material/Typography";
 import TabSection, { Section } from "../components/TabSection";
 import { useState } from "react";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
+import LandingGraphic from "../images/landing_graphic-01.png";
 
 const DrawerContent = () => {
   const [section, setSection] = useState<Section>("login");
@@ -108,8 +108,8 @@ export default function Homepage() {
       <GlobalStyles
         styles={{
           body: {
-            backgroundImage: `url(${Background})`,
-            backgroundSize: "100%",
+            backgroundImage: `url(${LandingGraphic})`,
+            backgroundSize: "105%",
           },
         }}
       />
@@ -119,18 +119,16 @@ export default function Homepage() {
           sx={{
             display: "flex",
             justifyContent: "right",
-            alignItems: "center",
+            alignItems: "end",
             height: "100vh",
+            pb: 5,
           }}
         >
-          <SvgIcon
-            style={{
-              cursor: "pointer",
-              transform: "scale(4.0)",
-              color: "white",
-            }}
+          <Box
+            sx={{ cursor: "pointer" }}
+            component="img"
             onClick={toggleDrawer(true)}
-            component={ArrowBackIosNewIcon}
+            src={GoToArrow}
           />
         </Box>
         <Drawer
