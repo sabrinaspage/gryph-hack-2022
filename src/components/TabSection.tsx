@@ -6,7 +6,6 @@ import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../states/Provider";
 import axios from "axios";
