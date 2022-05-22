@@ -12,6 +12,7 @@ import TranscriptTable from "../components/TranscriptTable";
 import MainTemplate from "../template/main-template";
 import LightBackground from "../images/lighterbg.png";
 import GlobalStyles from "@mui/styled-engine-sc/GlobalStyles";
+import { useParams } from "react-router-dom";
 
 // refactor with video and link to video when time comes
 // video thumbnail will be in a clickable button, yay
@@ -63,6 +64,8 @@ const Video = () => {
     { thumbnailLink: "blah2", title: "01:02:30 - 01:04:20" },
   ];
 
+  const { videoId } = useParams();
+
   return (
     <MainTemplate>
       <GlobalStyles
@@ -75,7 +78,7 @@ const Video = () => {
       />
       <Grid container>
         <Typography component="span" variant="h5" fontWeight={"bold"}>
-          Video
+          Video {videoId}
         </Typography>
       </Grid>
       <Grid container columnSpacing={4} columns={12}>

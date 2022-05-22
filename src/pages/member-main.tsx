@@ -149,10 +149,13 @@ const RecordingSection = ({
 };
 
 interface ThumbnailCardProps {
-  children: ReactNode;
+  imageUrl?: string;
+  videoId: string;
+  title: ReactNode;
 }
 
-const ThumbnailCard = ({ children }: ThumbnailCardProps) => {
+const ThumbnailCard = ({ title, videoId, imageUrl }: ThumbnailCardProps) => {
+  console.log(imageUrl);
   return (
     <Card
       sx={{
@@ -160,9 +163,12 @@ const ThumbnailCard = ({ children }: ThumbnailCardProps) => {
         backgroundColor: "#ededed",
       }}
     >
-      <CardActionArea sx={{ height: "100%" }} href="https://google.com">
+      <CardActionArea
+        sx={{ height: "100%", display: "flex", alignItems: "center" }}
+        href={"/video/" + videoId}
+      >
         <CardContent>
-          <Typography>{children}</Typography>
+          <Typography>{title}</Typography>
         </CardContent>
       </CardActionArea>
     </Card>
@@ -226,7 +232,10 @@ const MemberMain = () => {
             >
               {thumbnailArray.map((_, index) => (
                 <Grid item xs={1} sm={1} md={1} key={index}>
-                  <ThumbnailCard>{}</ThumbnailCard>
+                  <ThumbnailCard
+                    title={`Video ${index.toString()}`}
+                    videoId={index.toString()}
+                  />
                 </Grid>
               ))}
             </Grid>
