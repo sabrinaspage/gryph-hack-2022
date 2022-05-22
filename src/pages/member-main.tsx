@@ -7,11 +7,41 @@ import { FillerSection } from "../components/FillerSection";
 import { ThumbnailCard } from "../components/ThumbnailCard";
 import { RecordingSection } from "../components/RecordingSection";
 import { Buffer } from "buffer";
+import axios from "axios";
+import { Context } from "../states/Provider";
+import { useContext, useEffect, useState } from "react";
 
 window.Buffer = window.Buffer || Buffer;
 
+type Video = {
+  id: string;
+  user_id: string;
+  name: string;
+};
+
 const MemberMain = () => {
-  const thumbnailArray = Array.from(Array(8));
+  const thumbnailArray = Array(8);
+  const [state] = useContext(Context);
+  const [videoList, setVideoList] = useState<Video[]>([]);
+
+  useEffect(() => {
+    const listOfSessions = () => {
+      axios
+        .get(
+          `https://gryph-hack-2022.herokuapp.com/sessions/${state.userData.id}`
+        )
+        .then(async (res: any) => {
+          setVideoList(res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
+    listOfSessions();
+  }, []);
+
+  console.log(videoList);
 
   return (
     <MainTemplate>
@@ -58,12 +88,9 @@ const MemberMain = () => {
               columns={{ xs: 2, sm: 3, md: 4 }}
               pt={3}
             >
-              {thumbnailArray.map((_, index) => (
+              {videoList.map((video, index) => (
                 <Grid item xs={1} sm={1} md={1} key={index}>
-                  <ThumbnailCard
-                    title={`Video ${index.toString()}`}
-                    videoId={index.toString()}
-                  />
+                  <ThumbnailCard title={video.name} videoId={video.id} />
                 </Grid>
               ))}
             </Grid>
