@@ -14,6 +14,7 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import TabSection, { Section } from "../components/TabSection";
 import { useState } from "react";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
 
 const DrawerContent = () => {
   const [section, setSection] = useState<Section>("login");
@@ -120,7 +121,7 @@ export default function Homepage() {
           />
         </Box>
         <Drawer
-          variant="persistent"
+          transitionDuration={400}
           PaperProps={{
             sx: { width: "40%" },
           }}
@@ -131,7 +132,9 @@ export default function Homepage() {
           open={state["right"]}
           onClose={toggleDrawer(false)}
         >
-          {<DrawerContent />}
+          <ClickAwayListener onClickAway={() => toggleDrawer(false)}>
+            <DrawerContent />
+          </ClickAwayListener>
         </Drawer>
       </React.Fragment>
     </ThemeProvider>

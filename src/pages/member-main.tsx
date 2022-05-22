@@ -4,7 +4,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Box from "@mui/system/Box";
 import Typography from "@mui/material/Typography";
-import { ReactNode, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import SessionDialog from "../components/SessionDialog";
 import CardActionArea from "@mui/material/CardActionArea";
 import AddIcon from "@mui/icons-material/Add";
@@ -23,10 +23,17 @@ import { ClickAwayListener } from "@mui/material";
 
 const FillerSection = () => {
   const now = new Date();
+  const [cTime, setTime] = useState(now);
+
   const timeNow = now.toLocaleTimeString();
-  const dayOfWeek = now.toLocaleDateString("default", { weekday: "long" });
-  const month = now.toLocaleDateString("default", { month: "long" });
+  const dayOfWeek = cTime.toLocaleDateString("default", { weekday: "long" });
+  const month = cTime.toLocaleDateString("default", { month: "long" });
   const dateNow = `${dayOfWeek}, ${month} ${now.getDay()}, ${now.getFullYear()}`;
+  useEffect(() => {
+    setInterval(() => {
+      setTime(now);
+    }, 1000);
+  });
 
   return (
     <Grid item xs={12} md={8}>
