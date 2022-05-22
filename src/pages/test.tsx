@@ -1,20 +1,26 @@
 import { ReactMediaRecorder } from "react-media-recorder";
+import { useRef } from "react";
+import ReactPlayer from "react-player";
+import { Button } from "@mui/material";
 
 export default function RecordView() {
+  const videoPlayer = useRef<any>(null);
+  const onClickButton = () => {
+    if (videoPlayer && videoPlayer.current) {
+      videoPlayer.current.seekTo(5, "seconds");
+    }
+  };
   return (
     <div>
-      <ReactMediaRecorder
-        video
-        screen
-        render={({ status, startRecording, stopRecording, mediaBlobUrl }) => (
-          <div>
-            <p>{status}</p>
-            <button onClick={startRecording}>Start Recording</button>
-            <button onClick={stopRecording}>Stop Recording</button>
-            <video src={mediaBlobUrl} controls autoPlay loop />
-          </div>
-        )}
+      <ReactPlayer
+        ref={videoPlayer}
+        playing
+        controls
+        url="https://storage.googleapis.com/gryph-hack-2022-ee/1653253527668-screen-record.mp4"
       />
+      <button title="CLICK" onClick={onClickButton}>
+        Click me
+      </button>
     </div>
   );
 }
