@@ -21,25 +21,16 @@ export default function SpeakerCard({ fullTranscript }: SpeakerCardProps) {
     startIndex: 0,
     endIndex: 0,
   });
-  const [question, setQuestion] = useState("What is the max count of team?");
+  const [question, setQuestion] = useState("");
   const [dialog, setDialog] = useState(false);
-
-  useEffect(() => {
-    const fetchAnswer = async () => {
-      const answers = await handleAsk();
-      console.log(answers);
-      setResult(answers[0]);
-    };
-
-    fetchAnswer();
-  }, [dialog]);
+  const [loading, setLoading] = useState(false);
 
   const handleAsk = async () => {
     console.log("Loading Model");
+    setLoading(true);
     const model = await qna.load();
-    console.log("Loading Answers");
-    console.log(fullTranscript);
     const answers = await model.findAnswers(question, fullTranscript);
+    setDialog(!!answers);
     return answers;
   };
 
@@ -80,9 +71,12 @@ export default function SpeakerCard({ fullTranscript }: SpeakerCardProps) {
         }}
       >
         <CardActionArea
-          onClick={() => {
-            handleAsk();
-            setDialog(true);
+          onClick={async () => {
+            setLoading(true);
+            const answers = await handleAsk();
+            setDialog(!!answers);
+            setResult(answers[0]);
+            setLoading(false);
           }}
         >
           <Typography variant="h6" component="div">
@@ -90,13 +84,22 @@ export default function SpeakerCard({ fullTranscript }: SpeakerCardProps) {
           </Typography>
         </CardActionArea>
       </CardContent>
-      <Dialog open={dialog} onClose={() => setDialog(false)}>
+      <Dialog open={dialog && !loading} onClose={() => setDialog(false)}>
         <DialogTitle>Your answer is...</DialogTitle>
         <DialogContent>
-          <Typography variant="h2"> {result.text} </Typography>
-          <Typography variant="h5">
-            With accuracy... {result["score"].toFixed(2)}%
-          </Typography>
+          {result ? (
+            <>
+              <Typography variant="h2">{result.text}</Typography>
+              <Typography variant="h5">
+                With accuracy... {result["score"].toFixed(2)}%
+              </Typography>
+            </>
+          ) : (
+            <>
+              <Typography variant="h2">No answer!</Typography>
+              <Typography variant="h5">Enter a new question.</Typography>
+            </>
+          )}
         </DialogContent>
       </Dialog>
     </Card>
