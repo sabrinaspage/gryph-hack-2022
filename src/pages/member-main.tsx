@@ -14,6 +14,12 @@ import { LightTooltip } from "../components/Tooltip";
 import LightBackground from "../images/lighterbg.png";
 import Checkbox from "@mui/material/Checkbox";
 import GlobalStyles from "@mui/material/GlobalStyles";
+import {
+  StartRecording,
+  StopRecording,
+  StopSession,
+} from "../components/Button";
+import { ClickAwayListener } from "@mui/material";
 
 const FillerSection = () => {
   const now = new Date();
@@ -59,8 +65,8 @@ const FillerSection = () => {
 };
 
 interface RecordingSectionProps {
-  handleStartRecording: () => void;
-  handleManualRecording: () => void;
+  handleStartRecording?: () => void;
+  handleManualRecording?: () => void;
 }
 
 const RecordingSection = ({
@@ -70,6 +76,10 @@ const RecordingSection = ({
   const [session, setSession] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [tooltipOpen, setToolTipOpen] = useState(false);
+  const [checked, setChecked] = useState(false);
+  const [recording, setRecording] = useState(false);
+
+  console.log(handleStartRecording, handleManualRecording);
 
   return (
     <>
@@ -80,70 +90,93 @@ const RecordingSection = ({
         handleNameChange={() => null}
       />
       <Grid item xs={6} md={12} justifyContent="center" textAlign="center">
-        <Box
-          component={AddIcon}
-          boxShadow={3}
-          style={{
-            height: 200,
-            width: "100%",
-            color: "#F3694D",
-            backgroundColor: "white",
-            borderRadius: 50,
-            boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
-          }}
-        />
-        <Typography component="span" display="block" pt={1}>
-          New Meeting
-          <LightTooltip
-            title={
-              <Box sx={{ maxHeight: 200, maxWidth: 200, color: "black" }}>
-                <Checkbox />
-                Record Manually
-              </Box>
-            }
-            open={tooltipOpen}
-            arrow
-          >
-            <IconButton onClick={() => setToolTipOpen(!tooltipOpen)}>
-              <Box component={KeyboardArrowDownIcon} />
-            </IconButton>
-          </LightTooltip>
-        </Typography>
-      </Grid>
-      {/* <Grid item xs={6} md={12}>
-        <Button
-          onClick={() => handleStartRecording}
-          variant="outlined"
-          startIcon={<RadioButtonCheckedIcon style={{ color: "red" }} />}
-        >
-          start recording
-        </Button>
-      </Grid>
-      <Grid item xs={6} md={12}>
-        {!session ? (
-          <Button
-            onClick={() => {
-              handleManualRecording;
-              setSession(true);
-            }}
-            variant="outlined"
-            startIcon={<RadioButtonCheckedIcon style={{ color: "red" }} />}
-          >
-            manual recording
-          </Button>
-        ) : (
-          <Button
-            onClick={() => {
-              setDialogOpen(true);
-              setSession(false);
-            }}
-            variant="outlined"
-            startIcon={<RadioButtonCheckedIcon style={{ color: "red" }} />}
-          >
-            stop session
-          </Button>
+        {!session && (
+          <>
+            <Box py={2} />
+            <Box
+              component={AddIcon}
+              boxShadow={3}
+              onClick={() => setSession(true)}
+              style={{
+                height: 200,
+                width: "100%",
+                color: "#F3694D",
+                cursor: "pointer",
+                backgroundColor: "white",
+                borderRadius: 50,
+                boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+              }}
+            />
+            <Typography component="span" display="block" pt={1}>
+              Start Session
+              <LightTooltip
+                title={
+                  <Box sx={{ maxHeight: 200, maxWidth: 200, color: "black" }}>
+                    <Checkbox
+                      checked={checked}
+                      onClick={() => setChecked(!checked)}
+                    />
+                    Record Manually
+                  </Box>
+                }
+                open={tooltipOpen}
+                arrow
+              >
+                <IconButton onClick={() => setToolTipOpen(!tooltipOpen)}>
+                  <ClickAwayListener onClickAway={() => setToolTipOpen(false)}>
+                    <Box component={KeyboardArrowDownIcon} />
+                  </ClickAwayListener>
+                </IconButton>
+              </LightTooltip>
+            </Typography>
+          </>
         )}
-      </Grid> */}
+        {session && checked && !recording && (
+          <>
+            <Box py={5} />
+            <StartRecording
+              handleClick={() => {
+                setRecording(true);
+              }}
+            />
+            <Box py={1} />
+            <StopSession
+              handleClick={() => {
+                setDialogOpen(true);
+                setSession(false);
+              }}
+            />
+          </>
+        )}
+        {session && checked && recording && (
+          <>
+            <Box py={5} />
+            <StopRecording
+              handleClick={() => {
+                setRecording(false);
+              }}
+            />
+            <Box py={1} />
+            <StopSession
+              handleClick={() => {
+                setDialogOpen(true);
+                setSession(false);
+              }}
+            />
+          </>
+        )}
+        {session && !checked && (
+          <>
+            <Box py={5} />
+            <StopSession
+              handleClick={() => {
+                setDialogOpen(true);
+                setSession(false);
+              }}
+            />
+          </>
+        )}
+      </Grid>
     </>
   );
 };
