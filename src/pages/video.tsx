@@ -74,7 +74,7 @@ const Video = () => {
       if (sessionId != undefined) {
         axios
           .get(
-            `https://gryph-hack-2022.herokuapp.com/sessions/videos/${sessionId}`
+            `https://gryph-hack-2022.herokuapp.com/sessions/videos/${sessionId}/`
           )
           .then(async (res: any) => {
             console.log(res.data);

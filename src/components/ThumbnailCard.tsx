@@ -7,11 +7,7 @@ interface ThumbnailCardProps {
   title: ReactNode;
 }
 
-export const ThumbnailCard = ({
-  title,
-  videoId,
-  imageUrl,
-}: ThumbnailCardProps) => {
+export const ThumbnailCard = ({ title, videoId }: ThumbnailCardProps) => {
   console.log(videoId);
   return (
     <Card

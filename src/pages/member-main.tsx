@@ -20,7 +20,6 @@ type Video = {
 };
 
 const MemberMain = () => {
-  const thumbnailArray = Array(8);
   const [state] = useContext(Context);
   const [videoList, setVideoList] = useState<Video[]>([]);
 
@@ -28,7 +27,7 @@ const MemberMain = () => {
     const listOfSessions = () => {
       axios
         .get(
-          `https://gryph-hack-2022.herokuapp.com/sessions/${state.userData.id}`
+          `https://gryph-hack-2022.herokuapp.com/sessions/${state.userData.id}/`
         )
         .then(async (res: any) => {
           setVideoList(res.data);
