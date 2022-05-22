@@ -13,7 +13,7 @@ import { makeStyles, createStyles, Container } from "@material-ui/core";
 import RotateRightTwoToneIcon from "@mui/icons-material/RotateRightTwoTone";
 
 interface SpeakerCardProps {
-  fullTranscript: string;
+  fullTranscript: string | undefined;
 }
 
 const useStyles = makeStyles(() =>
@@ -34,7 +34,7 @@ const useStyles = makeStyles(() =>
 );
 
 export default function SpeakerCard({ fullTranscript }: SpeakerCardProps) {
-  const [result, setResult] = useState<Answer>({
+  const [result, setResult] = useState<Answer | undefined>({
     text: "",
     score: 0,
     startIndex: 0,
@@ -48,7 +48,10 @@ export default function SpeakerCard({ fullTranscript }: SpeakerCardProps) {
     console.log("Loading Model");
     setLoading(true);
     const model = await qna.load();
-    const answers = await model.findAnswers(question, fullTranscript);
+    let answers;
+    if (fullTranscript) {
+      answers = await model.findAnswers(question, fullTranscript);
+    }
     setDialog(!!answers);
     return answers;
   };
@@ -96,7 +99,9 @@ export default function SpeakerCard({ fullTranscript }: SpeakerCardProps) {
             setLoading(true);
             const answers = await handleAsk();
             setDialog(!!answers);
-            setResult(answers[0]);
+            if (answers) {
+              setResult(answers[0]);
+            }
             setLoading(false);
           }}
         >

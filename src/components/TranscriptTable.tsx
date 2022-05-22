@@ -7,11 +7,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import SearchBar from "material-ui-search-bar";
-
-export interface transcript {
-  timestamp: string;
-  text: string;
-}
+import { SessionType } from "../pages/video";
 
 const useStyles = makeStyles({
   table: {
@@ -20,17 +16,17 @@ const useStyles = makeStyles({
 });
 
 interface BasicTableProps {
-  originalRows: transcript[];
+  transcriptRows: SessionType[] | undefined;
 }
 
-export default function BasicTable({ originalRows }: BasicTableProps) {
-  const [rows, setRows] = useState<transcript[]>(originalRows);
+export default function BasicTable({ transcriptRows }: BasicTableProps) {
+  const [rows, setRows] = useState<SessionType[] | undefined>(transcriptRows);
   const [searched, setSearched] = useState<string>("");
   const classes = useStyles();
 
   const requestSearch = (searchedVal: string) => {
-    const filteredRows = originalRows.filter((row) => {
-      return row.text.toLowerCase().includes(searchedVal.toLowerCase());
+    const filteredRows = rows?.filter((row) => {
+      return row.transcript.toLowerCase().includes(searchedVal.toLowerCase());
     });
     setRows(filteredRows);
   };
@@ -51,17 +47,17 @@ export default function BasicTable({ originalRows }: BasicTableProps) {
         <TableContainer style={{ maxHeight: 150 }}>
           <Table className={classes.table} aria-label="simple table">
             <TableBody>
-              {rows.map((row) => (
-                <TableRow key={row.timestamp}>
+              {transcriptRows?.slice(1).map((row) => (
+                <TableRow key={row.transcript}>
                   <TableCell
                     component="th"
                     scope="row"
                     style={{ borderBottom: "none", color: "#A4A4A4" }}
                   >
-                    {row.timestamp}
+                    {row.start_time} - {row.end_time}
                   </TableCell>
                   <TableCell style={{ borderBottom: "none", color: "#A4A4A4" }}>
-                    {row.text}
+                    {row.transcript}
                   </TableCell>
                 </TableRow>
               ))}
