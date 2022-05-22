@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import Box from "@mui/system/Box";
 import SpeakerCard from "../components/SpeakerCard";
-import TranscriptTable, { transcript } from "../components/TranscriptTable";
+import TranscriptTable from "../components/TranscriptTable";
 import MainTemplate from "../template/main-template";
 import LightBackground from "../images/lighterbg.png";
 import GlobalStyles from "@mui/styled-engine-sc/GlobalStyles";

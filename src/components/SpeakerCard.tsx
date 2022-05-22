@@ -8,12 +8,7 @@ import "@tensorflow/tfjs";
 import * as qna from "@tensorflow-models/qna";
 import { Answer } from "@tensorflow-models/qna/dist/question_and_answer";
 import { useEffect, useState } from "react";
-import {
-  ClickAwayListener,
-  Dialog,
-  DialogContent,
-  DialogTitle,
-} from "@mui/material";
+import { Dialog, DialogContent, DialogTitle } from "@mui/material";
 
 interface SpeakerCardProps {
   fullTranscript: string;
