@@ -23,7 +23,7 @@ export const StopRecording = ({ handleClick }: ButtonProps) => (
     onClick={handleClick}
     startIcon={
       <FiberManualRecordIcon
-        sx={{ color: "#D9D9D9", transform: "scale(1.2)" }}
+        sx={{ color: "#D9D9D9", transform: "scale(1.1)" }}
       />
     }
     sx={{
@@ -42,7 +42,7 @@ export const StartRecording = ({ handleClick }: ButtonProps) => (
     onClick={handleClick}
     startIcon={
       <FiberManualRecordIcon
-        sx={{ color: "#D9D9D9", transform: "scale(1.2)" }}
+        sx={{ color: "#D9D9D9", transform: "scale(1.1)" }}
       />
     }
     sx={{

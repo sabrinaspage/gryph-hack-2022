@@ -89,12 +89,14 @@ const RecordingSection = () => {
               }}
             />
             <Box py={1} />
-            <Box sx={{ maxHeight: 200, maxWidth: 200, color: "black", pl: 3 }}>
-              <Checkbox
-                checked={checked}
-                onClick={() => setChecked(!checked)}
-              />
-              No facial recognition
+            <Box sx={{ maxHeight: 200, maxWidth: 250, color: "black", pl: 0 }}>
+              <Typography variant="body1">
+                <Checkbox
+                  checked={checked}
+                  onClick={() => setChecked(!checked)}
+                />
+                No facial recognition
+              </Typography>
             </Box>
           </>
         )}
