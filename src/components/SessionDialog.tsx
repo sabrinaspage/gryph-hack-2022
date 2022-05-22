@@ -34,9 +34,8 @@ export default function SessionDialog({
         onClose={() => handleOpen(false)}
         fullWidth={true}
       >
-        <DialogTitle>Subscribe</DialogTitle>
+        <DialogTitle>Name your session</DialogTitle>
         <DialogContent>
-          <DialogContentText>Name your session</DialogContentText>
           <TextField
             autoFocus
             margin="dense"
@@ -51,13 +50,13 @@ export default function SessionDialog({
         </DialogContent>
         <DialogActions>
           <Button
-            variant="outlined"
+            variant="contained"
             onClick={() => {
               handleOpen(false);
               setSessionName("");
             }}
           >
-            Update name of session
+            save
           </Button>
         </DialogActions>
       </Dialog>
