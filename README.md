@@ -1,46 +1,33 @@
-# Getting Started with Create React App
+## Inspiration 💡
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Going *Virtual* has become the new norm with the advent of **Covid-19**. Applications like **Zoom** are booming a lot & have become *part & parcel* of every student as well as teacher's life! We noticed that Zoom meetings/lectures can be *tiring* and we often miss out on a small snippet of the meeting while we are distracted by sudden events. Improper tackling of so many students online has made new loopholes in the current education system. Whether a student is interested or not in a class, if he’s/she’s looking towards what the teacher is teaching — these informations are extremely valuable to the teachers as well as the school/college they are enrolled in. Moreover, from student’s perspective, it becomes so hectic to go through the entire recording to see if what we missed was important or not.
 
-## Available Scripts
+We believe that with the power of AI, this can be solved if proceeded creatively. Thus we made **Skript** ✨
 
-In the project directory, you can run:
+## What it does 🤔
 
-### `yarn start`
+**Skript** is a smart web-app designed for those out there who get distracted during Zoom calls. It,
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Analyses user's face to determine when the user is looking away in an active session
+- Features sentiment analysis to study the mood of the user throughout the session
+- Allows users to record audio/video from a session automatically and or manually
+- Extracts the *distracted* timestamps w/ contents from the session using parent transcript
+- Let's user ask question directly from the same thing, returning hightly accurate answers.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## How we built it ⚙️
 
-### `yarn test`
+- We depended on the Material-UI docs, React documentation and TypeScript documentation
+- The Sentiment Analysis model is actually crafted with **Pytorch**, & is powered by Affdex-API
+- The QnA model is fueled by **Tensorflow**'s BERT.
+- Referred to React hooks like useContext, useState, useEffect
+- Frontend development referred to Figma for designs and constantly reiterated based on changes
+- Used VSC's inbuilt features in its fullest potential
+- Frontend and backend paired together to deploy on Netlify, **CircleCi** and Heroku
+- Used **CockroachDB** to store video sessions, users and session information
+- **Google Cloud platform** was used for speech-to-text
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+------
 
-### `yarn build`
+## Design
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+We were heavily inspired by the revised version of **Double Diamond** design process developed by **UK Research Council**, which not only includes visual design, but a full-fledged research cycle in which you must discover and define your problem before tackling your solution.
