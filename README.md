@@ -1,46 +1,83 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Skript - Skripting the Unscripted ✨
 
-## Available Scripts
+## Inspiration 💡
 
-In the project directory, you can run:
+Going *Virtual* has become the new norm with the advent of **Covid-19**. Applications like **Zoom** are booming a lot & have become *part & parcel* of every student as well as teacher's life! We noticed that Zoom meetings/lectures can be *tiring* and we often miss out on a small snippet of the meeting while we are distracted by sudden events. Improper tackling of so many students online has made new loopholes in the current education system. Whether a student is interested or not in a class, if he’s/she’s looking towards what the teacher is teaching — these informations are extremely valuable to the teachers as well as the school/college they are enrolled in. Moreover, from student’s perspective, it becomes so hectic to go through the entire recording to see if what we missed was important or not.
 
-### `yarn start`
+We believe that with the power of AI, this can be solved if proceeded creatively. Thus we made **Skript** ✨
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## What it does 🤔
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+**Skript** is a smart web-app designed for those out there who get distracted during Zoom calls. It,
 
-### `yarn test`
+- Analyses user's face to determine when the user is looking away in an active session
+- Features sentiment analysis to study the mood of the user throughout the session
+- Allows users to record audio/video from a session automatically and or manually
+- Extracts the *distracted* timestamps w/ contents from the session using parent transcript
+- Let's user ask question directly from the same thing, returning hightly accurate answers.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## How we built it ⚙️
 
-### `yarn build`
+- We depended on the Material-UI docs, React documentation and TypeScript documentation
+- The Sentiment Analysis model is actually crafted with **Pytorch**, & is powered by Affdex-API
+- The QnA model is fueled by **Tensorflow**'s BERT.
+- Referred to React hooks like useContext, useState, useEffect
+- Frontend development referred to Figma for designs and constantly reiterated based on changes
+- Used VSC's inbuilt features in its fullest potential
+- Frontend and backend paired together to deploy on Netlify, **CircleCi** and Heroku
+- Used **CockroachDB** to store video sessions, users and session information
+- **Google Cloud platform** was used for speech-to-text
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+------
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Design
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+We were heavily inspired by the revised version of **Double Diamond** design process developed by **UK Research Council**, which not only includes visual design, but a full-fledged research cycle in which you must discover and define your problem before tackling your solution.
 
-### `yarn eject`
+![Double-Diamond](https://res.cloudinary.com/devpost/image/fetch/s--zhzzgMUi--/c_limit,f_auto,fl_lossy,q_auto:eco,w_900/https://ipfs.infura.io/ipfs/Qmdy6iR3qoSRzrQrtRScVAdSmw9ECbmAXqE3mxMsU3AKNe)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+> 1. **Discover**: a deep dive into the problem we are trying to solve.
+> 2. **Define**: synthesizing the information from the discovery phase into a problem definition.
+> 3. **Develop**: think up solutions to the problem.
+> 4. **Deliver**: pick the best solution and build that.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+This time went for the minimalist **Material UI** design. We utilized design tools like Figma, Photoshop & Illustrator to prototype our designs before doing any coding. Through this, we are able to get iterative feedback so that we spend less time re-writing code.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+------
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# Research 📚
 
-## Learn More
+- GoEmotions: A Dataset of Fine-Grained Emotions, ACL 2020 : https://arxiv.org/pdf/2005.00547v2.pdf
+- Real-time Convolutional Neural Networks for Emotion and Gender Classification : https://arxiv.org/pdf/1710.07557v1.pdf
+- https://demodesk.com/blog/online-meetings/most-common-issues-explained
+- https://blog.zoom.us/new-ways-to-combat-zoom-meeting-disruptions
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+**CREDITS**
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Design Resources : Freepik
+- Icons : Icons8, MUI
+- Font : Fredoka One / Manrope / Montserrat / Roboto
+
+------
+
+## Challenges we ran into 😤
+
+- There was a big-time difference between all of the members and therefore communication was vital for this project to succeed.
+- There was also a difference in skill level; participating in a hackathon was a new experience to some team members and some were learning new software.
+- Power Outage because of storm messed up the whole schedule x__x
+- Using Material UI’s Grid system is a pain.
+
+## Accomplishments that we're proud of ✨
+
+We are proud of finishing the project on time which seemed like a tough task as we started working on it quite late due to other commitments and were also able to add most of the features that we envisioned for the app during ideation. Moreover, we learned a lot about different Web technologies and libraries that we could incorporate into our project to meet our unique needs. And as always, working overnight was pretty fun! :)
+
+## What we learned 🙌
+
+**Proper sleep is very important! :p** Well, a lot of things, both summed up in technical & non-technical sides. Also not to mention, we enhanced our googling and Stackoverflow searching skill during the hackathon :)
+
+## What's next? 🚀
+
+*We believe that our App has great potential*. Besides, we plan to expand it's capabilities by *incorporating other languages*. Our next step is to expand the number of variables taken into account in our algorithm. This will not only permit a *greater audience* but also facilitate the exchange of diverse information and technical expertise globally. Additionally, we intend to continue improving the accuracy and speed of our Machine learning Model to provide better accuracy & low-spec support.
+
+**Note ⚠️ — API credentials have been revoked. If you want to run the same on your local, use your own credentials.**
