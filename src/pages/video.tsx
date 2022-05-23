@@ -43,10 +43,6 @@ const TimestampVideoCard = ({
         sx={{
           height: 200,
           borderRadius: 5,
-          backgroundColor: "#D9D9D9",
-          "&:hover": {
-            backgroundColor: "#C2C2C2",
-          },
           textAlign: "center",
           verticalAlign: "bottom",
         }}
@@ -182,7 +178,9 @@ const Video = () => {
             height={"100%"}
             playing
             controls
-            url={`https://storage.googleapis.com/gryph-hack-2022-ee/${sessionInfo?.[0].name}`}
+            url={`https://storage.googleapis.com/gryph-hack-2022-ee/${
+              sessionInfo && sessionInfo.length > 0 ? sessionInfo[0].name : ""
+            }`}
           />
         </Grid>
         <Grid item xs={4} maxHeight={400} style={{ overflow: "auto" }}>
