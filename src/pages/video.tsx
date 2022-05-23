@@ -1,4 +1,5 @@
 import {
+  Button,
   Grid,
   List,
   ListItem,
@@ -12,7 +13,7 @@ import TranscriptTable from "../components/TranscriptTable";
 import MainTemplate from "../template/main-template";
 import LightBackground from "../images/lighterbg.png";
 import GlobalStyles from "@mui/styled-engine-sc/GlobalStyles";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import ReactPlayer from "react-player";
@@ -53,6 +54,8 @@ const TimestampVideoCard = ({
         onClick={handleClick}
       >
         <Box
+          component="img"
+          src={`https://storage.googleapis.com/gryph-hack-2022-ee/${title}`}
           sx={{
             height: "100%",
           }}
@@ -70,7 +73,7 @@ const Video = () => {
   const { sessionId } = useParams();
   const [sessionInfo, setSessionInfo] = useState<SessionType[]>();
   const [thisSession, setThisSession] = useState<SessionType>();
-  console.log(sessionId);
+  const navigate = useNavigate();
 
   const videoPlayer = useRef<any>(null);
 
@@ -86,6 +89,22 @@ const Video = () => {
       return session.transcript;
     })
     .join(" ");
+
+  const deleteSession = async () => {
+    if (sessionId != undefined) {
+      axios
+        .post("https://gryph-hack-2022.herokuapp.com/sessions/delete/", {
+          session_id: sessionId,
+        })
+        .then(async (res: any) => {
+          console.log(res.data);
+          setThisSession(res.data[0]);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
 
   useEffect(() => {
     const listOfSessions = () => {
@@ -142,9 +161,21 @@ const Video = () => {
         <Typography component="span" variant="h5" fontWeight={"bold"}>
           {thisSession?.name}
         </Typography>
+        <Button
+          onClick={async () => {
+            await deleteSession();
+            navigate("/member");
+          }}
+          sx={{ ml: 1, borderRadius: 50, textTransform: "none", mb: 1 }}
+          variant="contained"
+          color="error"
+          href="/member"
+        >
+          delete this session
+        </Button>
       </Grid>
-      <Grid container columnSpacing={4} columns={12}>
-        <Grid item xs={8}>
+      <Grid container columnSpacing={4} columns={12} maxHeight={400}>
+        <Grid item xs={8} maxHeight={400}>
           <ReactPlayer
             ref={videoPlayer}
             width={"100%"}

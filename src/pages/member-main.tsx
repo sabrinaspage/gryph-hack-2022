@@ -76,7 +76,7 @@ const MemberMain = () => {
           </Grid>
         </Grid>
         <FillerSection />
-        <Grid item xs={12} py={1} />
+        <Grid item xs={12} py={3} />
         <Grid item xs={12}>
           <Typography variant="h4">Past Sessions</Typography>
           <Box py={2} />
@@ -86,7 +86,7 @@ const MemberMain = () => {
               columnSpacing={{ xs: 4 }}
               rowSpacing={{ xs: 4 }}
               columns={{ xs: 4 }}
-              maxHeight={200}
+              maxHeight={230}
               overflow="auto"
             >
               {videoList.map((video, index) => (
