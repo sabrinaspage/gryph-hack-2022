@@ -13,7 +13,6 @@ import { injectMetadata } from "../utils/injectMetadata";
 export const RecordingSection = () => {
   const { status, startRecording, stopRecording, mediaBlobUrl } =
     useReactMediaRecorder({ video: true, screen: true });
-
   const [dialogOpen, setDialogOpen] = useState(false);
   const [checked, setChecked] = useState(false);
   const [recording, setRecording] = useState(false);
@@ -57,9 +56,14 @@ export const RecordingSection = () => {
               method: "POST",
               body: fd,
             }
-          ).catch((error) => {
-            console.log(error);
-          });
+          )
+            .then(() => {
+              // After transcription, reload page
+              window.location.reload();
+            })
+            .catch((error) => {
+              console.log(error);
+            });
         }
       })
       .catch((error) => {
@@ -72,7 +76,6 @@ export const RecordingSection = () => {
       <SessionDialog
         videoId={123}
         isOpen={dialogOpen}
-        handleOpen={setDialogOpen}
         handleNameChange={() => null}
         onSubmitNameChange={onCreateSession}
       />

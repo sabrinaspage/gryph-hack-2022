@@ -9,7 +9,6 @@ import { useEffect, useState } from "react";
 interface SessionDialogProps {
   videoId: number;
   isOpen: boolean;
-  handleOpen: (value: boolean) => void;
   handleNameChange: (name: string) => void;
   onSubmitNameChange: (name: string) => void;
 }
@@ -17,11 +16,11 @@ interface SessionDialogProps {
 export default function SessionDialog({
   videoId,
   isOpen,
-  handleOpen,
   handleNameChange,
   onSubmitNameChange,
 }: SessionDialogProps) {
   const [sessionName, setSessionName] = useState<string>("");
+  const [disabled, setDisabled] = useState(false);
 
   useEffect(() => {
     handleNameChange(sessionName);
@@ -29,12 +28,7 @@ export default function SessionDialog({
 
   return (
     <div>
-      <Dialog
-        key={videoId}
-        open={isOpen}
-        onClose={() => handleOpen(false)}
-        fullWidth={true}
-      >
+      <Dialog key={videoId} open={isOpen} fullWidth={true}>
         <DialogTitle>Name your session</DialogTitle>
         <DialogContent>
           <TextField
@@ -51,11 +45,11 @@ export default function SessionDialog({
         </DialogContent>
         <DialogActions>
           <Button
+            disabled={disabled}
             variant="contained"
             onClick={() => {
-              handleOpen(false);
-              setSessionName("");
               onSubmitNameChange(sessionName);
+              setDisabled(true);
             }}
           >
             save
