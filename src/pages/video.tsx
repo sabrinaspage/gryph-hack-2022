@@ -1,4 +1,5 @@
 import {
+  Button,
   Grid,
   List,
   ListItem,
@@ -12,9 +13,11 @@ import TranscriptTable from "../components/TranscriptTable";
 import MainTemplate from "../template/main-template";
 import LightBackground from "../images/lighterbg.png";
 import GlobalStyles from "@mui/styled-engine-sc/GlobalStyles";
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 import axios from "axios";
+import ReactPlayer from "react-player";
+import "../styles/player.css";
 
 export type SessionType = {
   end_time: string;
@@ -28,25 +31,27 @@ export type SessionType = {
 
 interface TimestampVideoCardProps {
   title: string;
+  handleClick: any;
 }
-const TimestampVideoCard = ({ title }: TimestampVideoCardProps) => {
+const TimestampVideoCard = ({
+  title,
+  handleClick,
+}: TimestampVideoCardProps) => {
   return (
     <ListItem disablePadding sx={{ display: "list-item" }}>
       <ListItemButton
         sx={{
           height: 200,
           borderRadius: 5,
-          backgroundColor: "#D9D9D9",
-          "&:hover": {
-            backgroundColor: "#C2C2C2",
-          },
           textAlign: "center",
           verticalAlign: "bottom",
         }}
         component="a"
-        href="#simple-list"
+        onClick={handleClick}
       >
         <Box
+          component="img"
+          src={`https://storage.googleapis.com/gryph-hack-2022-ee/${title}`}
           sx={{
             height: "100%",
           }}
@@ -64,7 +69,15 @@ const Video = () => {
   const { sessionId } = useParams();
   const [sessionInfo, setSessionInfo] = useState<SessionType[]>();
   const [thisSession, setThisSession] = useState<SessionType>();
-  console.log(sessionId);
+  const navigate = useNavigate();
+
+  const videoPlayer = useRef<any>(null);
+
+  const onClickButton = (startTime: string) => {
+    if (videoPlayer && videoPlayer.current) {
+      videoPlayer.current.seekTo(parseInt(startTime), "seconds");
+    }
+  };
 
   const fullTranscript = sessionInfo
     ?.slice(1)
@@ -72,6 +85,22 @@ const Video = () => {
       return session.transcript;
     })
     .join(" ");
+
+  const deleteSession = async () => {
+    if (sessionId != undefined) {
+      axios
+        .post("https://gryph-hack-2022.herokuapp.com/sessions/delete/", {
+          session_id: sessionId,
+        })
+        .then(async (res: any) => {
+          console.log(res.data);
+          setThisSession(res.data[0]);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  };
 
   useEffect(() => {
     const listOfSessions = () => {
@@ -110,6 +139,9 @@ const Video = () => {
     listOfSessions();
   }, []);
   console.log(sessionInfo);
+  console.log(
+    `https://storage.googleapis.com/gryph-hack-2022-ee/${sessionInfo?.[0].name}`
+  );
 
   return (
     <MainTemplate>
@@ -125,18 +157,33 @@ const Video = () => {
         <Typography component="span" variant="h5" fontWeight={"bold"}>
           {thisSession?.name}
         </Typography>
+        <Button
+          onClick={async () => {
+            await deleteSession();
+            navigate("/member");
+          }}
+          sx={{ ml: 1, borderRadius: 50, textTransform: "none", mb: 1 }}
+          variant="contained"
+          color="error"
+          href="/member"
+        >
+          delete this session
+        </Button>
       </Grid>
-      <Grid container columnSpacing={4} columns={12}>
-        <Grid item xs={8}>
-          <Box
-            sx={{
-              height: "100%",
-              backgroundColor: "#D9D9D9",
-              borderRadius: 5,
-            }}
+      <Grid container columnSpacing={4} columns={12} maxHeight={400}>
+        <Grid item xs={8} maxHeight={400}>
+          <ReactPlayer
+            ref={videoPlayer}
+            width={"100%"}
+            height={"100%"}
+            playing
+            controls
+            url={`https://storage.googleapis.com/gryph-hack-2022-ee/${
+              sessionInfo && sessionInfo.length > 0 ? sessionInfo[0].name : ""
+            }`}
           />
         </Grid>
-        <Grid item xs={4} maxHeight={350} style={{ overflow: "auto" }}>
+        <Grid item xs={4} maxHeight={400} style={{ overflow: "auto" }}>
           <nav aria-label="timestamps">
             <List
               sx={{
@@ -148,8 +195,12 @@ const Video = () => {
                 },
               }}
             >
-              {sessionInfo?.slice(1).map((timestamp, index) => (
-                <TimestampVideoCard key={index} title={timestamp.name} />
+              {sessionInfo?.slice(1).map((session, index) => (
+                <TimestampVideoCard
+                  handleClick={() => onClickButton(session.start_time)}
+                  key={index}
+                  title={session.name}
+                />
               ))}
             </List>
           </nav>

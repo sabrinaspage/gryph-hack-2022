@@ -79,16 +79,16 @@ export default function SpeakerCard({ fullTranscript }: SpeakerCardProps) {
           backgroundColor: "white",
           width: "96%",
           mx: 1,
-          mt: 1,
           borderRadius: 2,
         }}
       />
       <CardContent
         sx={{
           backgroundColor: "#F3694D",
-          height: 20,
+          maxHeight: 10,
           mx: 1,
           my: 1,
+          py: 1,
           borderRadius: 2,
           textAlign: "center",
           verticalAlign: "center",
@@ -105,7 +105,7 @@ export default function SpeakerCard({ fullTranscript }: SpeakerCardProps) {
             setLoading(false);
           }}
         >
-          <Container maxWidth="sm">
+          <Container style={{ marginTop: 0, alignItems: "top" }} maxWidth="sm">
             {loading ? (
               <RotateRightTwoToneIcon className={classes.rotateIcon} />
             ) : (

@@ -1,4 +1,3 @@
-import { ReactMediaRecorder } from "react-media-recorder";
 import { useRef } from "react";
 import ReactPlayer from "react-player";
 
@@ -15,7 +14,7 @@ export default function RecordView() {
         ref={videoPlayer}
         playing
         controls
-        url="https://storage.googleapis.com/gryph-hack-2022-ee/1653253527668-screen-record.mp4"
+        url="https://storage.googleapis.com/gryph-hack-2022-ee/1653252762298-screen-record.mp4"
       />
       <button title="CLICK" onClick={onClickButton}>
         Click me

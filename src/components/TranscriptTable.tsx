@@ -44,7 +44,7 @@ export default function BasicTable({ transcriptRows }: BasicTableProps) {
           onChange={(searchVal: string) => requestSearch(searchVal)}
           onCancelSearch={() => cancelSearch()}
         />
-        <TableContainer style={{ maxHeight: 150 }}>
+        <TableContainer style={{ maxHeight: 100 }}>
           <Table className={classes.table} aria-label="simple table">
             <TableBody>
               {transcriptRows?.slice(1).map((row) => (

@@ -8,12 +8,12 @@ interface ThumbnailCardProps {
 }
 
 export const ThumbnailCard = ({ title, videoId }: ThumbnailCardProps) => {
-  console.log(videoId);
   return (
     <Card
       sx={{
         height: 80,
-        backgroundColor: "#ededed",
+        backgroundColor: "#FFFFFF",
+        backgroundImage: `url(${title})`,
       }}
     >
       <CardActionArea
