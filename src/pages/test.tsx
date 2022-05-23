@@ -1,7 +1,6 @@
 import { ReactMediaRecorder } from "react-media-recorder";
 import { useRef } from "react";
 import ReactPlayer from "react-player";
-import { Button } from "@mui/material";
 
 export default function RecordView() {
   const videoPlayer = useRef<any>(null);
